@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="site">
+
+    <header>
+
+        {% include 'base/header.html' %}
+
+    </header>
+
+    <main>
+    
+        {% block content %}
+        {% endblock %}
+    
+    </main>
+
+    <footer>
+        
+        {% include 'base/footer.html' %}
+        
+    </footer>
+    
+</div>
+
+</body>
+</html>

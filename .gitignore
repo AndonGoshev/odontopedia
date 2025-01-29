@@ -1,0 +1,36 @@
+# Byte-compiled / compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+
+.venv/
+
+# Django secret key & settings (optional)
+.env
+*.env
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Static and media files (only if generated dynamically)
+staticfiles/
+media/
+
+# IDE / Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS & Windows system files
+.DS_Store
+Thumbs.db
