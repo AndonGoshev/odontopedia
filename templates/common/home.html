@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    Odontopedia
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="home-page-wrapper">
+
+        <div class="under-construction">
+
+            <h1 class="animate__animated animate__swing ">Odontopedia</h1>
+            
+            <h2>Coming soon</h2>
+
+            <div id="u-c-animation"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+        var animation = lottie.loadAnimation({
+            container: document.getElementById("u-c-animation"), // The div where the animation will be rendered
+            renderer: "canvas",
+             // Renders as SVG (other options: "canvas", "html")
+            loop: true, // Set to false if you want the animation to play only once
+            autoplay: true, // Set to false if you want to trigger manually
+            path: "{% static 'animations/excavator - 1738147659300.json' %}".replace(/&amp;/g, '&') // Make sure the path to the JSON file is correct
+        });
+    </script>
+
+
+{% endblock %}

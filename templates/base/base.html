@@ -1,8 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="{% static 'js/bootstrap.bundle.min.js' %}">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
 </head>
 <body>
 
@@ -15,18 +29,22 @@
     </header>
 
     <main>
-    
+
         {% block content %}
         {% endblock %}
-    
+
     </main>
 
     <footer>
-        
+
         {% include 'base/footer.html' %}
-        
+
     </footer>
-    
+
+    {% block scripts %}
+
+    {% endblock %}
+
 </div>
 
 </body>
