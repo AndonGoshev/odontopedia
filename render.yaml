@@ -1,5 +1,5 @@
 databases:
-  - name: odontopedia
+  - name: odontopedia_db
     plan: free
     databaseName: odontopedia_db
     user: odontopedia_user
