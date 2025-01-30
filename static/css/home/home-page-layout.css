@@ -1,61 +1,14 @@
-.home-page-wrapper {
-    position: relative;
+#home-page-wrapper {
     width: 100%;
     height: 100%;
+    background-color: #f5efeb;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 3em;
-}
-
-.under-construction {
-    position: relative;
-    width: 92%;
-    /*background: linear-gradient(101deg, rgba(166,150,133,1) 0%, rgba(105,75,51,1) 47%);*/
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5em;
-    padding-bottom: 3em;
-    border: 2px solid #A69685;
-}
-
-.under-construction h1 {
-    position: absolute;
-    padding: 0.2em 0.5em;
-    top: -8%;
-    left: 5%;
-    transform: translate(-50%, -50%);
-    color: #A69685;
-    background-color: white;
-    text-align: center;
-    /*padding: 0.2em 0;*/
-    border-radius: 25px;
-    letter-spacing: 0.1em;
-    box-shadow: 10px 0 15px rgba(0, 0, 0, 0.3);
-    animation-duration: 2s;
-    margin: 0;
-}
-
-.under-construction h2 {
-    color: #A69685;
-}
-
-#u-c-animation {
-    width: 80%;
-    max-width: 500px; /* Adjust this as needed */
-    height: auto;
-    margin: 0 auto; /* Centers it */
+    padding-top: 2em;
 }
 
 
-@media (max-width: 570px) {
 
-    .under-construction {
-        flex-direction: column !important;
-    }
 
-}
+

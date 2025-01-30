@@ -1,2 +1,8 @@
 @import "base/base.css";
+@import "base/header/header.css";
+@import "base/header/logo-section.css";
+@import "base/header/nav-section.css";
+@import "base/header/user-section.css";
+@import "base/footer/footer.css";
 @import "home/home-page-layout.css";
+@import "home/welcoming-section.css";

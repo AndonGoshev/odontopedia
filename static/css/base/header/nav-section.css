@@ -1,0 +1,22 @@
+.nav-container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    vertical-align: bottom;
+}
+
+.nav-container nav {
+    align-items: flex-start!important;
+    margin-left: 2em;
+    display: flex;
+    flex: 1;
+    justify-content: start;
+    gap: 2em;
+}
+
+.nav-container nav a{
+    text-decoration: none;
+    font-weight: 600;
+    color: #567c8d;
+    vertical-align: bottom;
+}

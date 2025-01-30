@@ -1,0 +1,22 @@
+
+#welcoming-section-wrapper {
+    width: 90%;
+    height: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 25px;
+    display: flex;
+}
+
+#welcoming-left-section {
+    width: 50%;
+    border: 2px solid blue;
+    height: 100%;
+}
+
+#welcoming-right-section {
+    width: 50%;
+    border: 2px solid blue;
+    height: 100%;
+}

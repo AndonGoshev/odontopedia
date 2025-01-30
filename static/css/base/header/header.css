@@ -1,0 +1,11 @@
+header {
+    width: 100%;
+    padding: 1.5em 3em;
+}
+
+#header-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
