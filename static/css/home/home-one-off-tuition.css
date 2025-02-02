@@ -1,0 +1,50 @@
+#home-one-off-tuition-wrapper {
+    width: 90%;
+    height: 15em;
+    background-color: white;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    display: flex;
+}
+
+#tuition-image-container {
+    min-width: 33%;
+    height: 100%;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    overflow: hidden;
+}
+
+#tuition-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#home-tuition-right-side {
+    position: relative;
+}
+
+#tuition-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    margin-left: 2em;
+    margin-top: 2em;
+}
+
+#home-schedule-meeting {
+    text-decoration: none;
+    padding: 0.2em 0.4em;
+    background-color: #558e3e;
+    color: white;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    border-radius: 5px;
+}
+
+#home-schedule-meeting:hover {
+    background-color: #78bc5d;
+}

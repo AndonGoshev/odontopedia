@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+    Registration
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="auth-form">
+
+        <form method="post">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="col-lg-2 col-md-2 col-xs-12 col-sm-6">
+                <button class="section2_btn btn2" type="submit">Register</button>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock %}

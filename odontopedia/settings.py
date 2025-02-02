@@ -14,6 +14,7 @@ from pathlib import Path
 
 import dj_database_url
 from decouple import config
+from django.conf.global_settings import AUTH_USER_MODEL
 from django.contrib import staticfiles
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -131,3 +132,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'

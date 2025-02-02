@@ -6,6 +6,9 @@
     flex-direction: column;
     align-items: center;
     padding-top: 2em;
+    /*remove padding bottom later*/
+    padding-bottom: 10em;
+    gap: 5em;
 }
 
 

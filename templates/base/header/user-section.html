@@ -1,10 +1,15 @@
 {% load static %}
+
 <div class="user-section">
     
-    <div class="profile-icon-container">
-        
-        <img src="{% static 'images/profile-icon.png' %}">
-        
-    </div>
+    {% if user.is_authenticated %}
+    
+        {% include 'base/header/authenticated-user-section.html' %}
+
+    {% else %}
+    
+        {% include 'base/header/not-authenticated-user-section.html' %}
+    
+    {% endif %}
     
 </div>
