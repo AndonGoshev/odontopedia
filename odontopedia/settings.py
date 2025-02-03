@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # additional apps
+    'rest_framework',
+
     #custom apps
     'odontopedia.accounts.apps.AccountsConfig',
     'odontopedia.common.apps.CommonConfig',
