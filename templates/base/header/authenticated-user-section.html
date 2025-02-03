@@ -5,16 +5,25 @@
 
     <!-- Dropdown Menu -->
     <div class="dropdown-menu">
+        
         <ul>
+            
             <li><a href="#">Profile</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Log out</a></li>
+            <li><a href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
+            
         </ul>
+        
     </div>
+    
 </div>
 
+<form id="logout-form" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+</form>
+
 <style>
-    
+
     .profile-icon-container {
         position: relative;
         display: inline-block;
