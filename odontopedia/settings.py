@@ -145,3 +145,11 @@ if not GOOGLE_OAUTH_CLIENT_ID:
 
 SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
