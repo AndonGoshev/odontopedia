@@ -5,7 +5,8 @@ import requests as reqs
 from PIL import Image
 from decouple import config
 from django.contrib.auth import login
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
@@ -95,3 +96,13 @@ class AuthGoogle(APIView):
         return id_token.verify_oauth2_token(
             token, requests.Request(), settings.GOOGLE_OAUTH_CLIENT_ID
         )
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'accounts/auth/password/password-change.html'
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('password-change-done')
+
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'accounts/auth/password/password-change-done.html'
