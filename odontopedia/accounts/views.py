@@ -1,6 +1,12 @@
+from http.client import responses
+from io import BytesIO
+
+import requests as reqs
+from PIL import Image
 from decouple import config
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
+from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -60,6 +66,7 @@ class AuthGoogle(APIView):
             return HttpResponse(f"Invalid Google token: {str(e)}", status=403)
 
         email = user_data["email"]
+
         user, created = CustomUser.objects.get_or_create(
             email=email, defaults={
                 "email": email,
@@ -68,6 +75,7 @@ class AuthGoogle(APIView):
                 'last_name': user_data.get("family_name"),
             }
         )
+
 
         try:
             login(request, user)

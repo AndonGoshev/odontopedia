@@ -43,3 +43,5 @@ class RegistrationForm(forms.ModelForm):
             self.add_error("password2", "Passwords do not match.")
 
         return cleaned_data
+
+

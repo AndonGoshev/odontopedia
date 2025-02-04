@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
-from odontopedia.accounts.choices import SignupMethodChoices
+from odontopedia.accounts.choices import SignupMethodChoices, UniversityChoices
 
 
 class CustomUserManager(BaseUserManager):
@@ -22,8 +22,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=30,)
     last_name = models.CharField(max_length=30, blank=True, null=True)
+    profile_image = models.ImageField(upload_to=f'{first_name}-{last_name}/profile_images', default='default_images/profile_image.jpg')
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
     sign_up_method = models.CharField(max_length=20, choices=SignupMethodChoices, default=SignupMethodChoices.ODONTOPEDIA)
     premium_status = models.BooleanField(default=False)
 
@@ -34,4 +37,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'User {self.first_name} {self.last_name} with email {self.email}'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    age = models.PositiveSmallIntegerField(blank=True, null=True)
+    university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices)
+
+
+    def __str__(self):
+        return self.user.email
 
