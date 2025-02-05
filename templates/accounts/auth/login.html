@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block title %}
     Login
@@ -10,44 +11,19 @@
 
 {% block content %}
 
-    <div class="auth-form">
+    <div class="auth-page-wrapper">
 
-        <form method="post">
+        <div id="login-page-card">
 
-            {% csrf_token %}
-            {{ form.as_p }}
+            {% include 'accounts/auth/login-card.html' %}
 
-            <button type="submit">Login</button>
-
-        </form>
+        </div>
 
     </div>
 
-    <div>
-        <p>Hi there 🙂 </p>
-        <p>Click below to sign in with Google</p>
-        <div id="g_id_onload"
-             data-client_id="696778763348-vsaqapj9blit8tvubjtv52t0fqqo8l4s.apps.googleusercontent.com"
-             data-context="signin"
-             data-ux_mode="popup"
-             data-login_uri="http://localhost:8000/accounts/auth-receiver/"
-             data-itp_support="true">
-        </div>
-
-        <div class="g_id_signin"
-             data-type="standard"
-             data-shape="pill"
-             data-theme="outline"
-             data-text="signin_with"
-             data-size="large"
-             data-logo_alignment="center"
-             data-width="40"
-             data-lang="en">
-        </div>
-    </div>
-    
-    <a href="{% url 'password_reset' %}">forgotten password</a>
-    
-
-
+    <style>
+        .auth-page-wrapper {
+            background-image: url("{% static 'images/login1.jpg' %}");
+        }
+    </style>
 {% endblock %}

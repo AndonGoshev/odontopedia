@@ -1,11 +1,13 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 
+from odontopedia.accounts.auth_form_styling_mixin import AuthFormsPlaceholderMixin, NewPasswordPlaceholderMixin
 from odontopedia.accounts.models import CustomUser
 
 
-class RegistrationForm(forms.ModelForm):
+class RegistrationForm(forms.ModelForm, AuthFormsPlaceholderMixin):
     email = forms.EmailField()
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
@@ -43,5 +45,21 @@ class RegistrationForm(forms.ModelForm):
             self.add_error("password2", "Passwords do not match.")
 
         return cleaned_data
+
+
+class CustomLoginForm(AuthenticationForm, AuthFormsPlaceholderMixin):
+    pass
+
+class CustomPasswordChangeForm(PasswordChangeForm, NewPasswordPlaceholderMixin):
+    pass
+
+class CustomPasswordResetForm(PasswordResetForm, AuthFormsPlaceholderMixin):
+    pass
+
+
+class CustomPasswordSetForm(SetPasswordForm, NewPasswordPlaceholderMixin):
+    pass
+
+
 
 

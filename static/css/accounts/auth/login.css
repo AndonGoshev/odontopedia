@@ -1,0 +1,14 @@
+.auth-page-wrapper {
+    margin: 3em 3em 3em 3em;
+    border-radius: 25px;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+}
+
+
+

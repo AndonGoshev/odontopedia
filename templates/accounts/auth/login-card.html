@@ -1,0 +1,47 @@
+<div class="auth-card-inner-container">
+
+    <h2>Hello again!</h2>
+
+    <div class="auth-form">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+
+                {% for error in form.non_field_errors %}
+
+                    <p>{{ error }}</p>
+
+                {% endfor %}
+
+            {% endif %}
+
+            {% for field in form %}
+
+                <p>{{ field }}</p>
+
+            {% endfor %}
+
+
+            <button type="submit">Login</button>
+
+        </form>
+
+    </div>
+
+    <div id="google-button">
+
+        {% include 'accounts/auth/google-button.html' %}
+
+    </div>
+
+    <a href="{% url 'password_reset' %}">forgotten password</a>
+
+</div>
+
+
+<p id="sign-up-element">Not a member? <a href="{% url 'registration' %}">Sign up now</a></p>
+
+

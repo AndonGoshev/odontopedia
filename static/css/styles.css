@@ -8,3 +8,12 @@
 @import "home/welcoming-section.css";
 @import "home/home-subjects-section.css";
 @import "home/home-one-off-tuition.css";
+@import "accounts/auth/login.css";
+@import "accounts/auth/registration.css";
+@import "accounts/auth/password-change.css";
+@import "accounts/auth/password-change-done.css";
+@import "accounts/auth/password-reset.css";
+@import "accounts/auth/password-reset-done.css";
+@import "accounts/auth/password-reset-confirm.css";
+@import "accounts/auth/password-reset-complete.css";
+@import "accounts/auth/login-card.css";

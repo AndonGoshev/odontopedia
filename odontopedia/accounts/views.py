@@ -3,7 +3,8 @@ from PIL import Image
 from decouple import config
 from django.contrib.auth import login
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, \
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
@@ -20,7 +21,8 @@ from rest_framework.views import APIView
 
 from odontopedia import settings
 from odontopedia.accounts.choices import SignupMethodChoices
-from odontopedia.accounts.forms import RegistrationForm
+from odontopedia.accounts.forms import RegistrationForm, CustomLoginForm, CustomPasswordChangeForm, \
+    CustomPasswordResetForm, CustomPasswordSetForm
 from odontopedia.accounts.models import CustomUser
 from odontopedia.settings import GOOGLE_OAUTH_CLIENT_ID
 
@@ -40,6 +42,7 @@ class RegistrationView(CreateView):
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/auth/login.html'
+    form_class = CustomLoginForm
 
     def get_success_url(self):
         return reverse_lazy('home')
@@ -97,9 +100,24 @@ class AuthGoogle(APIView):
 
 class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'accounts/auth/password/password-change.html'
-    form_class = PasswordChangeForm
+    form_class = CustomPasswordChangeForm
     success_url = reverse_lazy('password-change-done')
 
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
     template_name = 'accounts/auth/password/password-change-done.html'
+
+
+class CustomPasswordResetView(PasswordResetView):
+    form_class = CustomPasswordResetForm
+    success_url = reverse_lazy('password_reset_done')
+
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    pass
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = CustomPasswordSetForm
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    pass
