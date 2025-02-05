@@ -1,7 +1,4 @@
-from http.client import responses
-from io import BytesIO
 
-import requests as reqs
 from PIL import Image
 from decouple import config
 from django.contrib.auth import login

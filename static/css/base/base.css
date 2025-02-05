@@ -26,5 +26,7 @@ html, body {
 }
 
 main {
+    min-height: 100vh;
     height: auto;
+    background-color: #f5efeb;
 }
