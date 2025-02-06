@@ -8,6 +8,32 @@
 
             {% csrf_token %}
 
+
+            <!-- Email field -->
+            <div class="auth-form-field">
+                <input type="email" name="username" id="id_username" placeholder=" " required>
+                <label for="id_username">Email</label>
+            </div>
+
+            <div class="error-message" id="email-error"></div>
+            {% for error in form.username.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+
+            <!-- Password Field -->
+            <div class="auth-form-field">
+                <input type="password" name="password" id="id_password" placeholder=" " required>
+                <label for="id_password">Password</label>
+            </div>
+
+            <div class="error-message" id="password-error"></div>
+            {% for error in form.password.errors %}
+                <div class="error-message">{{ error }}</div>
+            {% endfor %}
+
+
+
+
             {% if form.non_field_errors %}
 
                 {% for error in form.non_field_errors %}
@@ -17,12 +43,6 @@
                 {% endfor %}
 
             {% endif %}
-
-            {% for field in form %}
-
-                <p>{{ field }}</p>
-
-            {% endfor %}
 
 
             <button type="submit">Login</button>
