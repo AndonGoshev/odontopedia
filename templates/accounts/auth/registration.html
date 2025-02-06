@@ -1,26 +1,30 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
 
 {% block title %}
+    Sign up
+{% endblock %}
 
-    Registration
-
+{% block scripts %}
+    <script src="https://accounts.google.com/gsi/client?hl=en" async defer></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="auth-form">
+    <div class="auth-page-wrapper">
 
-        <form method="post">
+        <div id="registration-page-card">
 
-            {% csrf_token %}
-            {{ form.as_p }}
+            {% include 'accounts/auth/registration-card.html' %}
 
-            <div class="col-lg-2 col-md-2 col-xs-12 col-sm-6">
-                <button class="section2_btn btn2" type="submit">Register</button>
-            </div>
-
-        </form>
+        </div>
 
     </div>
 
+    <style>
+        .auth-page-wrapper {
+            background-image: url("{% static 'images/login1.jpg' %}");
+        }
+    </style>
 {% endblock %}

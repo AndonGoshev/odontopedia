@@ -39,6 +39,13 @@ class RegistrationView(CreateView):
         login(self.request, user)
         return super().form_valid(form)
 
+    def form_invalid(self, form):
+        print(form.errors)
+
+        return super().form_invalid(form)
+
+
+
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/auth/login.html'

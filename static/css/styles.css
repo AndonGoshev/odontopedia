@@ -17,3 +17,5 @@
 @import "accounts/auth/password-reset-confirm.css";
 @import "accounts/auth/password-reset-complete.css";
 @import "accounts/auth/login-card.css";
+@import "accounts/auth/registration-card.css";
+@import "accounts/auth/auth-common.css";

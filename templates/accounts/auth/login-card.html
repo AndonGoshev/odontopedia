@@ -32,36 +32,36 @@
             {% endfor %}
 
 
-
-
             {% if form.non_field_errors %}
 
                 {% for error in form.non_field_errors %}
 
-                    <p>{{ error }}</p>
+                    <p class="auth-field-non-field-error">{{ error }}</p>
 
                 {% endfor %}
 
             {% endif %}
 
 
-            <button type="submit">Login</button>
+            <button class="auth-button" type="submit">Sign in</button>
 
         </form>
 
     </div>
 
+    <hr class="auth-separator-line">
+
     <div id="google-button">
 
-        {% include 'accounts/auth/google-button.html' %}
+        {% include 'accounts/auth/signin-google-button.html' %}
 
     </div>
 
-    <a href="{% url 'password_reset' %}">forgotten password</a>
-
 </div>
 
+<div id="auth-bottom-options-container">
 
-<p id="sign-up-element">Not a member? <a href="{% url 'registration' %}">Sign up now</a></p>
+    <p id="sign-up-element">Not a member? <a href="{% url 'registration' %}">Sign up</a></p>
+    <p id="forgotten-password-element">Forgot your password? <a href="{% url 'password_reset' %}">Reset it</a></p>
 
-
+</div>

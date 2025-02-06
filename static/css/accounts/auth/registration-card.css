@@ -1,4 +1,4 @@
-#login-page-card {
+#registration-page-card {
     position: relative;
     width: 18em;
     display: flex;
@@ -12,8 +12,12 @@
     backdrop-filter: blur(8.3px);
     -webkit-backdrop-filter: blur(14.3px);
     border: 1px solid rgba(255, 255, 255, 0.50);
+}
 
-    /*background-color: white;*/
-    /*border-radius: 25px;*/
-    /*box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5)*/
+
+@media (max-width: 800px) {
+    #registration-page-card {
+        width: 80% !important; /* Adjust width to 80% on smaller screens */
+        background-color: red;  /* Test: Set a red background for testing */
+    }
 }

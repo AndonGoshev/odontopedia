@@ -1,0 +1,112 @@
+<div class="auth-card-inner-container">
+
+    <h2>Sign up</h2>
+
+    <div class="auth-form">
+
+        <form method="post">
+
+            {% csrf_token %}
+        
+        
+        
+            <!-- First name field -->
+            <div class="auth-form-field">
+                <input name="first_name" id="id_first_name" placeholder=" " value="{{ form.first_name.value|default:'' }}" required>
+                <label for="id_first_name">First name</label>
+            </div>
+
+            <div class="auth-error-message" id="first_name-error"></div>
+            {% for error in form.first_name.errors %}
+                <div class="auth-error-message">{{ error }}</div>
+            {% endfor %}
+        
+        
+        
+        
+            <!-- Last name field -->    
+            <div class="auth-form-field">
+                <input name="last_name" id="id_last_name" placeholder=" " value="{{ form.last_name.value|default:'' }}" required>
+                <label for="id_last_name">Last name</label>
+            </div>
+
+            <div class="auth-error-message" id="last_name-error"></div>
+            {% for error in form.last_name.errors %}
+                <div class="auth-error-message">{{ error }}</div>
+            {% endfor %}
+        
+        
+        
+
+            <!-- Email field -->
+            <div class="auth-form-field">
+                <input type="email" name="email" id="id_email" placeholder=" " value="{{ form.email.value|default:'' }}" required>
+                <label for="id_email">Email</label>
+            </div>
+
+            <div class="auth-error-message" id="email-error"></div>
+            {% for error in form.email.errors %}
+                <div class="auth-error-message">{{ error }}</div>
+            {% endfor %}
+        
+        
+        
+
+            <!-- Password Field -->
+            <div class="auth-form-field">
+                <input type="password" name="password" id="id_password" placeholder=" " required>
+                <label for="id_password">Password</label>
+            </div>
+
+            <div class="auth-error-message" id="password-error"></div>
+            {% for error in form.password.errors %}
+                <div class="auth-error-message">{{ error }}</div>
+            {% endfor %}
+            
+        
+        
+        
+            <!-- Confirm Password  Field -->
+            <div class="auth-form-field">
+                <input type="password" name="password2" id="id_password2" placeholder=" " required>
+                <label for="id_password2">Confirm password</label>
+            </div>
+
+            <div class="auth-error-message" id="password2-error"></div>
+            {% for error in form.password2.errors %}
+                <div class="auth-error-message">{{ error }}</div>
+            {% endfor %}
+            
+
+            {% if form.non_field_errors %}
+
+                {% for error in form.non_field_errors %}
+
+                    <p class="auth-field-non-field-error">{{ error }}</p>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <button class="auth-button" type="submit">Sign in</button>
+
+        </form>
+
+    </div>
+
+    <hr class="auth-separator-line">
+
+    <div id="google-button">
+
+        {% include 'accounts/auth/signup-google-button.html' %}
+
+    </div>
+
+</div>
+
+<div id="auth-bottom-options-container">
+
+    <p id="you-have-an-account">You have an account? <a href="{% url 'login' %}">Sign in</a></p>
+
+</div>
