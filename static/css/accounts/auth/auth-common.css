@@ -116,6 +116,7 @@
 
 /*error messages*/
 .auth-error-message {
+    width: 100%;
     margin-top: 0 !important;
     margin-bottom: 1em!important;
     font-size: 0.8em;
@@ -126,6 +127,7 @@ background-color: rgba(255, 0, 0, 0.4); /* Semi-transparent red background */
 }
 
 .auth-field-non-field-error {
+    width: 100%;
     margin-top: 0 !important;
     margin-bottom: 1em!important;
     font-size: 0.8em;
@@ -133,4 +135,12 @@ background-color: rgba(255, 0, 0, 0.4); /* Semi-transparent red background */
     color: white; /* White text for high contrast */
     padding: 0 0.3em;
     border-radius: 5px;
+}
+
+.auth-page-inner-container-link {
+    width: 100%;
+}
+
+.auth-card-inner-container p {
+    color: #494949;
 }

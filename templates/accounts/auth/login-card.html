@@ -15,9 +15,9 @@
                 <label for="id_username">Email</label>
             </div>
 
-            <div class="error-message" id="email-error"></div>
+            <div class="auth-error-message" id="email-error"></div>
             {% for error in form.username.errors %}
-                <div class="error-message">{{ error }}</div>
+                <div class="auth-error-message">{{ error }}</div>
             {% endfor %}
 
             <!-- Password Field -->
@@ -26,9 +26,9 @@
                 <label for="id_password">Password</label>
             </div>
 
-            <div class="error-message" id="password-error"></div>
+            <div class="auth-error-message" id="password-error"></div>
             {% for error in form.password.errors %}
-                <div class="error-message">{{ error }}</div>
+                <div class="auth-error-message">{{ error }}</div>
             {% endfor %}
 
 
