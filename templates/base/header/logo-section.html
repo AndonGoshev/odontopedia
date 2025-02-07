@@ -2,5 +2,8 @@
 <div class="logo-container">
     
     <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"></a>
+{#    {% if user.is_authenticated %}#}
+{#    <p>{{ user.first_name }}</p>#}
+{#    {% endif %}#}
     
 </div>
