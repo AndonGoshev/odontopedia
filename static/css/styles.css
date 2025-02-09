@@ -19,3 +19,5 @@
 @import "accounts/auth/login-card.css";
 @import "accounts/auth/registration-card.css";
 @import "accounts/auth/auth-common.css";
+@import "base/header/authenticated-user-section.css";
+@import "base/header/not-authenticated-user-section.css";

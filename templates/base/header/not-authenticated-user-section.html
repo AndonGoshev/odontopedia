@@ -1,7 +1,6 @@
-<div id="auth-options-container">
-    
-    <a href="{% url 'login' %}" class="auth-option-link">Log in</a>
-    <a class="auth-option-link">/</a>
-    <a href="{% url 'registration' %}" class="auth-option-link">Sign up</a>
-    
+<div class="multi-button">
+
+    <button onclick="location.href='{% url 'login' %}'" class="auth-option-link">Sign in</button>
+    <button onclick="location.href='{% url 'registration' %}'" class="auth-option-link">Get started</button>
+
 </div>

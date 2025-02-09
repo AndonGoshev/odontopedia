@@ -76,6 +76,10 @@
             {% for error in form.password2.errors %}
                 <div class="auth-error-message">{{ error }}</div>
             {% endfor %}
+        
+            <div class="auth-form-field">
+                <p class="terms-and-privacy">By signing up you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</p>
+            </div>
 
 
             {% if form.non_field_errors %}
