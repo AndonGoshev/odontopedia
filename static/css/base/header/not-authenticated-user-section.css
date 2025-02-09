@@ -1,6 +1,6 @@
 .multi-button {
     display: flex;
-    gap: 0.2em;
+    gap: 0.5em;
     align-items: center;
 
 
@@ -61,6 +61,17 @@
         /*    border-radius: 0 6px 6px 0;*/
         /*}*/
     }
+}
+
+.multi-button button:nth-child(1) {
+    border: 1px solid #567c8d;
+    box-shadow: inset 1px 0 2px rgba(0, 0, 0, .1);
+}
+
+.multi-button button:nth-child(2) {
+    height: 3em;
+    width: 8em;
+    border: 2px solid #567c8d;
 }
 
 @keyframes towhite {
