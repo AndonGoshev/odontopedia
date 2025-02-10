@@ -23,7 +23,7 @@ class CustomUserManager(BaseUserManager):
 class UploadToUserProfileImage:
     def __call__(self, instance, filename):
         # Split the email and get the part before the '@' symbol
-        return f'{instance.email.split("@")[0]}/profile_images/{filename}'
+        return f'accounts/{instance.email.split("@")[0]}/profile_images/{filename}'
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
