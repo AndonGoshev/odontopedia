@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.utils.deconstruct import deconstructible
 
 from odontopedia.accounts.choices import SignupMethodChoices, UniversityChoices
 
@@ -18,11 +19,17 @@ class CustomUserManager(BaseUserManager):
         return user
 
 
+@deconstructible
+class UploadToUserProfileImage:
+    def __call__(self, instance, filename):
+        # Split the email and get the part before the '@' symbol
+        return f'{instance.email.split("@")[0]}/profile_images/{filename}'
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=30,)
     last_name = models.CharField(max_length=30, blank=True, null=True)
-    profile_image = models.ImageField(upload_to=f'{first_name}-{last_name}/profile_images', default='default_images/profile_image.jpg')
+    profile_image = models.ImageField(upload_to=UploadToUserProfileImage(), default='default_images/profile_image.jpg')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -40,7 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     age = models.PositiveSmallIntegerField(blank=True, null=True)
     university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices)
 

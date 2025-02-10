@@ -1,12 +1,12 @@
-
 from PIL import Image
 from decouple import config
 from django.contrib.auth import login
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, \
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.core.files.base import ContentFile
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -17,13 +17,14 @@ from django.views.generic import CreateView
 from google.auth.transport import requests
 from google.oauth2 import id_token
 from jwt import InvalidTokenError
+from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
 
 from odontopedia import settings
 from odontopedia.accounts.choices import SignupMethodChoices
 from odontopedia.accounts.forms import RegistrationForm, CustomLoginForm, CustomPasswordChangeForm, \
-    CustomPasswordResetForm, CustomPasswordSetForm
-from odontopedia.accounts.models import CustomUser
+    CustomPasswordResetForm, CustomPasswordSetForm, UserProfileForm
+from odontopedia.accounts.models import CustomUser, Profile
 from odontopedia.settings import GOOGLE_OAUTH_CLIENT_ID
 
 
@@ -103,6 +104,65 @@ class AuthGoogle(APIView):
         return id_token.verify_oauth2_token(
             token, requests.Request(), settings.GOOGLE_OAUTH_CLIENT_ID
         )
+
+
+class UserProfileUpdateView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile, created = Profile.objects.get_or_create(user=user)  # Ensure profile exists
+        return render(request, 'accounts/manage/account-settings.html', {
+            'user': user,
+            'profile': profile,
+        })
+
+    def post(self, request, *args, **kwargs):
+        field = request.POST.get('field')
+        value = request.POST.get('value')
+        print(f"Field: {field}, Value: {value}")  # Debug
+        user = request.user
+        profile, created = Profile.objects.get_or_create(user=user)
+
+        try:
+            # First, check if it's a profile image upload
+            if field == 'profile_image' and 'profile_image' in request.FILES:
+                uploaded_image = request.FILES['profile_image']
+                # Allow only JPG and PNG MIME types
+                allowed_types = ['image/jpeg', 'image/png']
+                if uploaded_image.content_type not in allowed_types:
+                    return JsonResponse({'error': 'Only JPG and PNG files are allowed.'}, status=400)
+
+                user.profile_image = uploaded_image
+                user.save()
+                return JsonResponse({
+                    'message': 'Profile image updated successfully',
+                    'value': user.profile_image.url
+                })
+
+            # Then handle text fields for first and last name
+            elif field in ['first_name', 'last_name']:
+                if not value:
+                    return JsonResponse({'error': f'{field} cannot be empty'}, status=400)
+                setattr(user, field, value)
+                user.save()
+
+            # And handle profile fields for age and university
+            elif field in ['age', 'university']:
+                if not value:
+                    return JsonResponse({'error': f'{field} cannot be empty'}, status=400)
+                setattr(profile, field, value)
+                profile.save()
+
+            else:
+                return JsonResponse({'error': 'Invalid field'}, status=400)
+
+            return JsonResponse({
+                'message': f'Field was updated successfully',
+                'value': getattr(user, field, None) if field not in ['profile_image'] else user.profile_image.url,
+            })
+
+        except ValidationError as e:
+            return JsonResponse({'error': str(e)}, status=400)
 
 
 class CustomPasswordChangeView(PasswordChangeView):

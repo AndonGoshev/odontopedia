@@ -61,5 +61,27 @@ class CustomPasswordSetForm(SetPasswordForm, NewPasswordPlaceholderMixin):
     pass
 
 
+class UserProfileForm(forms.ModelForm):
+    first_name = forms.CharField(required=True,)
+    last_name = forms.CharField(required=True,)
+    profile_image = forms.ImageField(required=False)
 
+    age = forms.IntegerField(required=False)
+    university = forms.CharField(required=False)
 
+    class Meta:
+        model = CustomUser
+        fields = ('first_name', 'last_name', 'profile_image', 'age', 'university')
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields['first_name'].initial = user.first_name
+            self.fields["last_name"].initial = user.last_name
+            self.fields["profile_image"].initial = user.profile_image
+
+            if hasattr(user, 'profile'):
+                self.fields['age'].initial = user.profile.age
+                self.fields['university'].initial = user.profile.university
