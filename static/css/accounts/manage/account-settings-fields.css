@@ -1,0 +1,29 @@
+.profile-field-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+}
+
+.label-and-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.label-and-field label {
+    width: 30%;
+    max-width: 30%;
+        vertical-align: middle;
+}
+
+.label-and-field input {
+    width: 70%;
+    height: 3em;
+}
+
+.field-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}

@@ -1,0 +1,32 @@
+#account-settings-wrapper {
+    background-color: #fff;
+    /*min-height: 100vh;*/
+    margin: 2em 3em 2em 3em;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-settings-wrapper {
+    display: flex;
+    width: 70%;
+    /*border: 1px solid gray;*/
+    /*background-color: #c8d9e6;*/
+    border-radius: 15px;
+}
+
+#profile-settings-form {
+    width: 100%;
+    margin: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    color: #373737;
+}

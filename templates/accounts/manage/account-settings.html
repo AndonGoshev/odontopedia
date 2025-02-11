@@ -6,91 +6,23 @@
 {% endblock %}
 
 {% block content %}
+    
+    
 
-    <h2>Account Settings</h2>
-
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <!-- First Name -->
-        <div id="first_name_container">
-            <!-- Display mode -->
-            <div id="first_name_display_container">
-                <label>First Name:</label>
-                <span id="first_name_display">{{ user.first_name }}</span>
-                <button type="button" onclick="editField('first_name')">Edit</button>
-            </div>
-            <!-- Edit mode (initially hidden) -->
-            <div id="first_name_edit" style="display: none;">
-                <input type="text" id="first_name_input" value="{{ user.first_name }}">
-                <button type="button" onclick="cancelEdit('first_name')">Cancel</button>
-                <button type="button" onclick="saveField('first_name')">Save</button>
-            </div>
+    <div id="account-settings-wrapper">
+    
+        <div id="profile-settings-wrapper">
+            
+            {% include 'accounts/manage/account-settings-fields.html' %}
+            
         </div>
-
-        <!-- Last Name -->
-        <div id="last_name_container">
-            <div id="last_name_display_container">
-                <label>Last Name:</label>
-                <span id="last_name_display">{{ user.last_name }}</span>
-                <button type="button" onclick="editField('last_name')">Edit</button>
-            </div>
-            <div id="last_name_edit" style="display: none;">
-                <input type="text" id="last_name_input" value="{{ user.last_name }}">
-                <button type="button" onclick="cancelEdit('last_name')">Cancel</button>
-                <button type="button" onclick="saveField('last_name')">Save</button>
-            </div>
-        </div>
-
-        <!-- Profile Image -->
-        <div id="profile_image_container">
-            <!-- Always displayed current image -->
-            <div id="profile_image_display_container">
-                <label>Profile Image:</label>
-                <img id="profile_image_display" src="{{ user.profile_image.url }}" alt="Profile Image" width="150">
-                <button type="button" onclick="toggleProfileImageEdit()">Change</button>
-            </div>
-            <!-- Hidden controls for editing the profile image -->
-            <div id="profile_image_edit" style="display: none;">
-                <input type="file" id="profile_image_input" name="profile_image">
-                <button type="button" onclick="cancelProfileImageEdit()">Cancel</button>
-                <button type="button" onclick="saveField('profile_image')">Save</button>
-            </div>
-        </div>
-
-
-        <!-- Age -->
-        <div id="age_container">
-            <div id="age_display_container">
-                <label>Age:</label>
-                <span id="age_display">{{ user.profile.age }}</span>
-                <button type="button" onclick="editField('age')">Edit</button>
-            </div>
-            <div id="age_edit" style="display: none;">
-                <input type="number" id="age_input" value="{{ user.profile.age }}">
-                <button type="button" onclick="cancelEdit('age')">Cancel</button>
-                <button type="button" onclick="saveField('age')">Save</button>
-            </div>
-        </div>
-
-        <!-- University -->
-        <div id="university_container">
-            <div id="university_display_container">
-                <label>University:</label>
-                <span id="university_display">{{ user.profile.university }}</span>
-                <button type="button" onclick="editField('university')">Edit</button>
-            </div>
-            <div id="university_edit" style="display: none;">
-                <input type="text" id="university_input" value="{{ user.profile.university }}">
-                <button type="button" onclick="cancelEdit('university')">Cancel</button>
-                <button type="button" onclick="saveField('university')">Save</button>
-            </div>
-        </div>
-    </form>
-
-    <div id="notification"
-         style="display: none; position: fixed; top: 20px; right: 20px; background: #444; color: #fff; padding: 10px; border-radius: 4px; z-index: 1000;"></div>
-
+    
+{#        <div id="account-settings-wrapper"></div>#}
+    
+    </div>
+    
+    
+    <div id="notification">svsv</div>
 
 {% endblock %}
 

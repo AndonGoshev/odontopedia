@@ -4,10 +4,10 @@
 @import "base/header/nav-section.css";
 @import "base/header/user-section.css";
 @import "base/footer/footer.css";
-@import "home/home-page-layout.css";
-@import "home/welcoming-section.css";
-@import "home/home-subjects-section.css";
-@import "home/home-one-off-tuition.css";
+@import "common/home/home-page-layout.css";
+@import "common/home/welcoming-section.css";
+@import "common/home/home-subjects-section.css";
+@import "common/home/home-one-off-tuition.css";
 @import "accounts/auth/login.css";
 @import "accounts/auth/registration.css";
 @import "accounts/auth/password-change.css";
@@ -21,3 +21,5 @@
 @import "accounts/auth/auth-common.css";
 @import "base/header/authenticated-user-section.css";
 @import "base/header/not-authenticated-user-section.css";
+@import "accounts/manage/account-settings.css";
+@import "accounts/manage/account-settings-fields.css";
