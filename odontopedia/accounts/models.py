@@ -50,6 +50,7 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     age = models.PositiveSmallIntegerField(blank=True, null=True)
     university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices)
+    bio = models.CharField(max_length=500, blank=True, null=True)
 
 
     def __str__(self):

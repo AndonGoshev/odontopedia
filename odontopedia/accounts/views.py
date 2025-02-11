@@ -147,7 +147,7 @@ class UserProfileUpdateView(LoginRequiredMixin, View):
                 user.save()
 
             # And handle profile fields for age and university
-            elif field in ['age', 'university']:
+            elif field in ['age', 'university', 'bio']:
                 if not value:
                     return JsonResponse({'error': f'{field} cannot be empty'}, status=400)
                 setattr(profile, field, value)

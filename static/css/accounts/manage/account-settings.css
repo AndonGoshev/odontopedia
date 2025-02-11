@@ -1,32 +1,43 @@
 #account-settings-wrapper {
     background-color: #fff;
     /*min-height: 100vh;*/
-    margin: 2em 3em 2em 3em;
+    width: 90%;
+    margin: 3em auto;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 25px;
-    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 4em;
+    gap: 5em;
 }
 
 #profile-settings-wrapper {
     display: flex;
-    width: 70%;
-    /*border: 1px solid gray;*/
+    width: 90%;
     /*background-color: #c8d9e6;*/
     border-radius: 15px;
 }
 
 #profile-settings-form {
     width: 100%;
-    margin: 3em;
+    /*margin: 3em;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2em;
-    color: #373737;
+    color: #567c8d;
+}
+
+
+#account-wrapper {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #567c8d;
 }

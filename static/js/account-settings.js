@@ -1,3 +1,37 @@
+function updateCharCount() {
+    let textarea = document.getElementById("bio_input");
+    let counter = document.getElementById("char_count");
+    let saveBtn = document.getElementById("bio_save_btn");
+
+    let charCount = textarea.value.length;
+
+    // Debug: log current character count and the status of save button
+    console.log("Current Character Count: " + charCount);
+    console.log("Save Button Disabled: " + saveBtn.disabled);
+
+    counter.textContent = charCount + " / 500";
+
+    // Disable the save button if the character count exceeds 500
+    if (charCount > 500) {
+        saveBtn.disabled = true;
+        console.log("Save button disabled because char count exceeds 500.");
+    } else {
+        saveBtn.disabled = false;
+        console.log("Save button enabled.");
+    }
+}
+
+// Initialize the counter when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    // Debug: log when the page is fully loaded
+    console.log("Page loaded. Initializing character counter...");
+    updateCharCount(); // Set counter based on existing bio text
+
+    let bioInput = document.getElementById("bio_input");
+    bioInput.addEventListener("input", updateCharCount); // Update counter while typing
+});
+
+// Edit the bio field
 function editField(field) {
     let input = document.getElementById(field + '_input');
     let editBtn = document.getElementById(field + '_edit_btn');
@@ -7,13 +41,20 @@ function editField(field) {
     // Store original value for potential cancellation
     input.setAttribute('data-original-value', input.value);
 
+    // Enable the text area and focus
     input.removeAttribute("readonly");
     input.focus();
 
+    // Show/hide the necessary buttons
     editBtn.style.display = "none";
     saveBtn.style.display = "inline";
     cancelBtn.style.display = "inline";
+
+    // Debug: log when entering edit mode
+    console.log("Entering edit mode for field: " + field);
+    updateCharCount(); // Update count when entering edit mode
 }
+
 
 function cancelEdit(field) {
     let input = document.getElementById(field + '_input');
@@ -37,12 +78,41 @@ function saveField(field) {
     let cancelBtn = document.getElementById(field + '_cancel_btn');
     let input = document.getElementById(field + '_input');
     let newValue = input.value;
+
+    // Debug: Check character count before saving
+    console.log("Attempting to save field: " + field);
+    console.log("Character count before save: " + newValue.length);
+
+    // If the character count exceeds 500, prevent saving
+    if (newValue.length > 500) {
+        alert("Bio cannot exceed 500 characters.");
+        return;  // Stop execution here, don't submit the form
+    }
+
     updateFieldCustom(field, newValue);
 
     editBtn.style.display = "inline";
     saveBtn.style.display = "none";
     cancelBtn.style.display = "none";
-        input.setAttribute("readonly", true);
+    input.setAttribute("readonly", true);
+}
+
+function editProfileImage() {
+    // Show the file input and Cancel/Save buttons; hide the Change button.
+    document.getElementById("profile_image_edit").style.display = "block";
+    document.getElementById("profile_image_cancel_btn").style.display = "inline";
+    document.getElementById("profile_image_save_btn").style.display = "inline";
+    document.getElementById("profile_image_change_btn").style.display = "none";
+}
+
+function cancelProfileImageEdit() {
+    // Hide file input and Cancel/Save buttons; show Change button.
+    document.getElementById("profile_image_edit").style.display = "none";
+    document.getElementById("profile_image_cancel_btn").style.display = "none";
+    document.getElementById("profile_image_save_btn").style.display = "none";
+    document.getElementById("profile_image_change_btn").style.display = "inline";
+    // Clear the file input value
+    document.getElementById("profile_image_input").value = "";
 }
 
 function toggleProfileImageEdit() {
@@ -51,11 +121,6 @@ function toggleProfileImageEdit() {
     editDiv.style.display = (editDiv.style.display === "none") ? "block" : "none";
 }
 
-function cancelProfileImageEdit() {
-    // Hide the edit controls and clear the file input
-    document.getElementById("profile_image_edit").style.display = "none";
-    document.getElementById("profile_image_input").value = "";
-}
 
 function updateFieldCustom(field, newValue) {
     let formData = new FormData();
@@ -83,6 +148,7 @@ function updateFieldCustom(field, newValue) {
         method: "POST",
         headers: {
             "X-CSRFToken": csrfToken,
+            // "Content-Type": "application/json",
         },
         body: formData,
     })
@@ -95,7 +161,7 @@ function updateFieldCustom(field, newValue) {
                 // Use the dedicated function for profile image so that the image stays displayed
                 cancelProfileImageEdit();
             } else {
-                document.getElementById(field + '_display').textContent = newValue;
+                // document.getElementById(field + '_display').textContent = newValue;
                 cancelEdit(field);
             }
         } else if (data.error) {

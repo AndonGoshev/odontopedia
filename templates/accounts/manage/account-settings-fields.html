@@ -1,80 +1,150 @@
 <form id="profile-settings-form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
+    <h1>My account</h1>
+
 
     <!-- Profile Image -->
-    {#    <div id="profile_image_container">#}
-    {#        <!-- Always displayed current image -->#}
-    {#        <div id="profile_image_display_container">#}
-    {#            <label>Profile Image:</label>#}
-    {#            <img id="profile_image_display" src="{{ user.profile_image.url }}" alt="Profile Image" width="150">#}
-    {#            <button type="button" onclick="toggleProfileImageEdit()">Change</button>#}
-    {#        </div>#}
-    {#        <!-- Hidden controls for editing the profile image -->#}
-    {#        <div id="profile_image_edit" style="display: none;">#}
-    {#            <input type="file" id="profile_image_input" name="profile_image">#}
-    {#            <button type="button" onclick="cancelProfileImageEdit()">Cancel</button>#}
-    {#            <button type="button" onclick="saveField('profile_image')">Save</button>#}
-    {#        </div>#}
-    {#    </div>#}
+    <div id="profile_image_wrapper">
+        <!-- Always displayed current image -->
+        <div id="profile_image_display_container">
 
-    <!-- First Name -->
-    <div id="first_name_container" class="profile-field-container">
-        <div class="label-and-field">
+            {#            <label>Profile Image:</label>#}
 
-            <label>First Name:</label>
-            <input type="text" id="first_name_input" class="profile-field-display" value="{{ user.first_name }}"
-                   readonly>
+            <div id="profile-image-container">
+
+                <img id="profile_image_display" src="{{ user.profile_image.url }}" alt="Profile Image">
+
+            </div>
+
+            <div id="profile-image-buttons-container">
+
+                <p id="profile_image_change_btn" class="profile-image-button" type="button"
+                   onclick="editProfileImage()">Edit</p>
+
+                <div id="profile-image-secondary-buttons-container">
+
+                    <p id="profile_image_cancel_btn" class="profile-image-button profile-cancel-button" type="button"
+                       onclick="cancelProfileImageEdit()"
+                       style="display: none;">Cancel</p>
+                    <p id="profile_image_save_btn" class="profile-image-button" type="button"
+                       onclick="saveProfileImage()" style="display: none;">
+                        Save</p>
+
+                </div>
+
+                <div id="profile_image_edit" style="display: none;">
+
+                    <input type="file" id="profile_image_input" name="profile_image">
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="field-buttons">
-            <p id="first_name_edit_btn" onclick="editField('first_name')">✎_ Edit</p>
-            <p id="first_name_cancel_btn" onclick="cancelEdit('first_name')" style="display: none;">Cancel</p>
-            <p id="first_name_save_btn" onclick="saveField('first_name')" style="display: none;">Save</p>
 
+        <div>uoou</div>
+        <!-- Hidden controls for editing the profile image -->
+    </div>
+
+
+    <div class="profile-personal-info-container">
+
+        <!-- First Name -->
+        <div id="first_name_container" class="profile-field-container">
+            <div class="label-and-field">
+
+                <label>First Name:</label>
+                <input type="text" id="first_name_input" class="profile-field-display" value="{{ user.first_name }}"
+                       readonly>
+
+            </div>
+
+            <div class="field-buttons">
+                <p id="first_name_edit_btn" onclick="editField('first_name')">✎_ Edit</p>
+                <p id="first_name_cancel_btn" class="profile-cancel-button" onclick="cancelEdit('first_name')"
+                   style="display: none;">Cancel</p>
+                <p id="first_name_save_btn" class="profile-save-button" onclick="saveField('first_name')"
+                   style="display: none;">Save</p>
+            </div>
+
+        </div>
+
+        <!-- Last Name -->
+        <div id="last_name_container" class="profile-field-container">
+            <div class="label-and-field">
+                <label>Last Name:</label>
+                <input type="text" id="last_name_input" class="profile-field-display" value="{{ user.last_name }}"
+                       readonly>
+            </div>
+            <div class="field-buttons">
+                <p id="last_name_edit_btn" onclick="editField('last_name')">✎_ Edit</p>
+                <p id="last_name_cancel_btn" class="profile-cancel-button" onclick="cancelEdit('last_name')"
+                   style="display: none;">Cancel</p>
+                <p id="last_name_save_btn" onclick="saveField('last_name')" style="display: none;">Save</p>
+            </div>
         </div>
 
     </div>
 
-    <!-- Last Name -->
-    <div id="last_name_container" class="profile-field-container">
-        <div class="label-and-field">
-            <label>Last Name:</label>
-            <input type="text" id="last_name_input" class="profile-field-display" value="{{ user.last_name }}" readonly>
+
+    <div class="profile-personal-info-container">
+
+
+        <!-- Age -->
+        <div id="age_container" class="profile-field-container">
+            <div class="label-and-field">
+                <label>Age:</label>
+                <input type="number" id="age_input" class="profile-field-display" value="{{ user.profile.age }}"
+                       readonly>
+            </div>
+            <div class="field-buttons">
+                <p id="age_edit_btn" onclick="editField('age')">✎_ Edit</p>
+                <p id="age_cancel_btn" class="profile-cancel-button" onclick="cancelEdit('age')" style="display: none;">
+                    Cancel</p>
+                <p id="age_save_btn" onclick="saveField('age')" style="display: none;">Save</p>
+            </div>
         </div>
-        <div class="field-buttons">
-            <p id="last_name_edit_btn" onclick="editField('last_name')">✎_ Edit</p>
-            <p id="last_name_cancel_btn" onclick="cancelEdit('last_name')" style="display: none;">Cancel</p>
-            <p id="last_name_save_btn" onclick="saveField('last_name')" style="display: none;">Save</p>
+
+        <!-- University -->
+        <div id="university_container" class="profile-field-container">
+            <div class="label-and-field">
+                <label>University:</label>
+                <input type="text" id="university_input" class="profile-field-display"
+                       value="{{ user.profile.university }}"
+                       readonly>
+            </div>
+            <div class="field-buttons">
+                <p id="university_edit_btn" onclick="editField('university')">✎_ Edit</p>
+                <p id="university_cancel_btn" class="profile-cancel-button" onclick="cancelEdit('university')"
+                   style="display: none;">Cancel</p>
+                <p id="university_save_btn" onclick="saveField('university')" style="display: none;">Save</p>
+            </div>
         </div>
+
+
     </div>
 
-    <!-- Age -->
-    <div id="age_container" class="profile-field-container">
-        <div class="label-and-field">
-            <label>Age:</label>
-            <input type="number" id="age_input" class="profile-field-display" value="{{ user.profile.age }}" readonly>
-        </div>
-        <div class="field-buttons">
-            <p id="age_edit_btn" onclick="editField('age')">✎_ Edit</p>
-            <p id="age_cancel_btn" onclick="cancelEdit('age')" style="display: none;">Cancel</p>
-            <p id="age_save_btn" onclick="saveField('age')" style="display: none;">Save</p>
-        </div>
-    </div>
+    <div class="profile-personal-info-container">
 
-    <!-- University -->
-    <div id="university_container" class="profile-field-container">
-        <div class="label-and-field">
-            <label>University:</label>
-            <input type="text" id="university_input" class="profile-field-display" value="{{ user.profile.university }}"
-                   readonly>
+
+        <div id="bio_container" class="profile-field-container">
+            <div class="label-and-field">
+                <label>Bio: (max 500 chars)    <span id="char_count">0 / 500</span></label>
+                <textarea id="bio_input" class="profile-field-display" readonly
+                          oninput="updateCharCount()">{{ user.profile.bio }}</textarea>
+                 <!-- Counter display -->
+            </div>
+            <div class="field-buttons">
+                <p id="bio_edit_btn" onclick="editField('bio')">✎_ Edit</p>
+                <p id="bio_cancel_btn" class="profile-cancel-button" onclick="cancelEdit('bio')" style="display: none;">
+                    Cancel</p>
+                <p id="bio_save_btn" onclick="saveField('bio')" style="display: none;">Save</p>
+            </div>
         </div>
-        <div class="field-buttons">
-            <p id="university_edit_btn" onclick="editField('university')">✎_ Edit</p>
-            <p id="university_cancel_btn" onclick="cancelEdit('university')" style="display: none;">Cancel</p>
-            <p id="university_save_btn" onclick="saveField('university')" style="display: none;">Save</p>
-        </div>
+
+
     </div>
 
 
