@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
 
 from google.auth.transport import requests
 from google.oauth2 import id_token
@@ -189,3 +189,8 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     pass
 
+class AccountDeleteView(LoginRequiredMixin, DeleteView):
+    model = CustomUser
+    template_name = 'accounts/account-delete.html'
+    success_url = reverse_lazy('home')
+    pk_url_kwarg = 'id'

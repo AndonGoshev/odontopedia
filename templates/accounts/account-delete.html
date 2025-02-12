@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+    Delete account
+{% endblock %}
+
+{% block content %}
+
+    <div class="auth-page-wrapper">
+
+        <div id="password-change-page-card">
+
+            <div class="auth-card-inner-container">
+
+                <h2>Delete account</h2>
+                <p>Are you sure you want to delete your account? This action is irreversible</p>
+
+                <div class="auth-form">
+                    
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <button class="auth-button" type="submit">Delete</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div id="auth-bottom-options-container">
+
+                <p>Need help? <a href="{% url 'registration' %}">Contacts</a></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <style>
+        .auth-page-wrapper {
+            background-image: url("{% static 'images/login1.jpg' %}");
+        }
+    </style>
+
+{% endblock %}
