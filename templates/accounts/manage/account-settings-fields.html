@@ -140,17 +140,19 @@
         <!-- University -->
         <div id="university_container" class="profile-field-container">
             <div class="label-and-field">
-                <label>University:</label>
-                <input type="text" id="university_input" class="profile-field-display"
-                       value="{{ user.profile.university }}"
-                       readonly>
-                <div class="mini-field-icon"><img alt="mini icon" src="{% static 'images/uni-mini.png' %}"></div>
-            </div>
-            <div class="field-buttons">
-                <p id="university_edit_btn" onclick="editField('university')">✎_ Edit</p>
-                <p id="university_cancel_btn" class="profile-cancel-button" onclick="cancelEdit('university')"
-                   style="display: none;">Cancel</p>
-                <p id="university_save_btn" onclick="saveField('university')" style="display: none;">Save</p>
+                <label for="university_input">University</label>
+                <select id="university_input" class="university-dropdown" disabled>
+                    <!-- Options will be added dynamically -->
+                </select>
+                <div class="field-buttons">
+                    
+                    <p id="university_edit_btn" class="profile-image-button">✎_ Edit</p>
+                    <p id="university_cancel_btn" class="profile-image-button profile-cancel-button"
+                       style="display: none;">Cancel</p>
+                    <p id="university_save_btn" class="profile-image-button" style="display: none;">Save</p>
+                    
+                    
+                </div>
             </div>
         </div>
 
@@ -162,10 +164,10 @@
 
         <div id="bio_container" class="profile-field-container">
             <div class="label-and-field">
-                <label>Bio: (max 500 chars)    <span id="char_count">0 / 500</span></label>
+                <label>Bio: (max 500 chars) <span id="char_count">0 / 500</span></label>
                 <textarea id="bio_input" class="profile-field-display" readonly
                           oninput="updateCharCount()">{{ user.profile.bio }}</textarea>
-                 <!-- Counter display -->
+                <!-- Counter display -->
             </div>
             <div class="field-buttons">
                 <p id="bio_edit_btn" onclick="editField('bio')">✎_ Edit</p>
@@ -180,3 +182,44 @@
 
 
 </form>
+
+{#<script>document.addEventListener("DOMContentLoaded", function () {#}
+{#    let universitySelect = document.getElementById("university_input");#}
+{##}
+{#    // Replace this with your actual university choices from the class#}
+{#    let universityChoices = [#}
+{#        "Harvard University",#}
+{#        "Stanford University",#}
+{#        "MIT",#}
+{#        "Oxford University",#}
+{#        "Cambridge University"#}
+{#    ];#}
+{##}
+{#    // Populate the dropdown#}
+{#    universityChoices.forEach(university => {#}
+{#        let option = document.createElement("option");#}
+{#        option.value = university;#}
+{#        option.textContent = university;#}
+{#        universitySelect.appendChild(option);#}
+{#    });#}
+{##}
+{#    // Handle the edit button click#}
+{#    document.getElementById("university_edit_btn").addEventListener("click", function () {#}
+{#        universitySelect.removeAttribute("disabled");#}
+{#        universitySelect.focus();#}
+{#    });#}
+{##}
+{#    // Handle the save button click#}
+{#    document.getElementById("university_save_btn").addEventListener("click", function () {#}
+{#        let selectedValue = universitySelect.value;#}
+{#        updateFieldCustom("university", selectedValue);#}
+{#        universitySelect.setAttribute("disabled", true);#}
+{#    });#}
+{##}
+{#    // Handle the cancel button click#}
+{#    document.getElementById("university_cancel_btn").addEventListener("click", function () {#}
+{#        universitySelect.value = universitySelect.getAttribute('data-original-value');#}
+{#        universitySelect.setAttribute("disabled", true);#}
+{#    });#}
+{#});#}
+{#</script>#}

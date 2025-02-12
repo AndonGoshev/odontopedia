@@ -228,3 +228,23 @@
 #activity-section ul li span {
     color: #688e95;
 }
+
+
+.university-dropdown {
+    font-size: 0.9em;
+    flex-grow: 1;
+    height: 3em;
+    border-radius: 5px;
+    color: #2f4145;
+    background-color: white;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
+    padding-left: 0.5em;
+    border: 1px solid #e4e4e4;
+    appearance: none; /* Removes default dropdown arrow */
+}
+
+
+.university-dropdown:disabled {
+    color: #2f4145 !important;   /* Force normal color */
+    opacity: 1 !important;  /* Ensure opacity is normal, not grayed out */
+}

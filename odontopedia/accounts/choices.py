@@ -6,5 +6,6 @@ class SignupMethodChoices(models.TextChoices):
 
 
 class UniversityChoices(models.TextChoices):
-    PLOVDIV_MED_UNI = 'plovdiv_med_uni', 'PLOVDIV_MED_UNI'
-    VARNA_MED_UNI = 'varna_med_uni', 'VARNA_MED_UNI'
+    INITIAL = 'Select University'
+    PLOVDIV_MED_UNI = 'PLOVDIV MED UNI'
+    VARNA_MED_UNI = 'VARNA MED UNI'

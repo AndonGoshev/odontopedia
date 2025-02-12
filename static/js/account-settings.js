@@ -215,3 +215,75 @@ function saveProfileImage() {
         console.error("Error saving profile image:", error);
     });
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let universitySelect = document.getElementById("university_input");
+    let editBtn = document.getElementById("university_edit_btn");
+    let saveBtn = document.getElementById("university_save_btn");
+    let cancelBtn = document.getElementById("university_cancel_btn");
+
+    // Fetch university choices and user data from the backend
+    fetch('/accounts/get-university-data/')
+    .then(response => {
+        console.log("Response Status:", response.status);
+        console.log("Response Headers:", response.headers.get("content-type"));
+        return response.json(); // Read response as JSON
+    })
+    .then(data => {
+        let universityChoices = data.universities;
+        let userUniversity = data.user_university;
+        console.log(universityChoices);
+
+        // Populate dropdown options
+        universityChoices.forEach(university => {
+            let option = document.createElement("option");
+            option.value = university;
+            option.textContent = university;
+            universitySelect.appendChild(option);
+        });
+
+        // Set the user's saved university as the default selected option
+        if (userUniversity && universityChoices.includes(userUniversity)) {
+            universitySelect.value = userUniversity;
+        }
+
+        // Store the original value for cancel functionality
+        universitySelect.setAttribute("data-original-value", universitySelect.value);
+    })
+    .catch(error => console.error("Error fetching university data:", error));
+
+    // Edit button functionality
+    editBtn.addEventListener("click", function () {
+        universitySelect.removeAttribute("disabled");
+        editBtn.style.display = "none";
+        saveBtn.style.display = "inline";
+        cancelBtn.style.display = "inline";
+    });
+
+    // Save button functionality
+    saveBtn.addEventListener("click", function () {
+        let selectedValue = universitySelect.value;
+        updateFieldCustom("university", selectedValue);
+
+        // Disable field and revert buttons
+        universitySelect.setAttribute("disabled", true);
+        editBtn.style.display = "inline";
+        saveBtn.style.display = "none";
+        cancelBtn.style.display = "none";
+
+        // Store the new original value
+        universitySelect.setAttribute("data-original-value", selectedValue);
+    });
+
+    // Cancel button functionality
+    cancelBtn.addEventListener("click", function () {
+        universitySelect.value = universitySelect.getAttribute("data-original-value"); // Revert value
+        universitySelect.setAttribute("disabled", true);
+        editBtn.style.display = "inline";
+        saveBtn.style.display = "none";
+        cancelBtn.style.display = "none";
+    });
+});
+
+

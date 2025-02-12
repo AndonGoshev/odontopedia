@@ -1,11 +1,12 @@
 from PIL import Image
 from decouple import config
-from django.contrib.auth import login
+from django.contrib.auth import login, get_user
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, \
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.core.files.base import ContentFile
+from django.core.serializers import serialize
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -21,7 +22,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
 
 from odontopedia import settings
-from odontopedia.accounts.choices import SignupMethodChoices
+from odontopedia.accounts.choices import SignupMethodChoices, UniversityChoices
 from odontopedia.accounts.forms import RegistrationForm, CustomLoginForm, CustomPasswordChangeForm, \
     CustomPasswordResetForm, CustomPasswordSetForm, UserProfileForm
 from odontopedia.accounts.models import CustomUser, Profile
@@ -163,6 +164,20 @@ class UserProfileUpdateView(LoginRequiredMixin, View):
 
         except ValidationError as e:
             return JsonResponse({'error': str(e)}, status=400)
+
+
+def get_university_data(request):
+    # Directly use UniversityChoices' choices
+    university_choices = [choice[0] for choice in UniversityChoices.choices]
+    print(university_choices)
+
+    user = request.user
+    user_university = user.profile.university
+
+    return JsonResponse({
+        "universities": university_choices,
+        "user_university": user_university
+    })
 
 
 class CustomPasswordChangeView(PasswordChangeView):

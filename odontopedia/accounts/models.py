@@ -57,7 +57,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     age = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
-    university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices, default='')
+    university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices, default=UniversityChoices.INITIAL)
     bio = models.CharField(max_length=500, blank=True, null=True , default='Please add some information about you.')
 
 

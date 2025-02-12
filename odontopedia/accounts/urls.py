@@ -3,7 +3,8 @@ from django.contrib.auth import views as auth_views
 
 from odontopedia.accounts.views import RegistrationView, CustomLoginView, CustomLogoutView, AuthGoogle, \
     CustomPasswordChangeView, CustomPasswordChangeDoneView, CustomPasswordResetView, CustomPasswordResetDoneView, \
-    CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, UserProfileUpdateView, AccountDeleteView
+    CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, UserProfileUpdateView, AccountDeleteView, \
+    get_university_data
 
 urlpatterns = [
     path('registration/', RegistrationView.as_view(), name='registration'),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('password-reset-complete/', CustomPasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
     path('<int:id>/delete-account', AccountDeleteView.as_view(), name='delete-account'),
+    path('get-university-data/', get_university_data, name='get-university-data'),
 ]
