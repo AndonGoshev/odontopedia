@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 4em;
+    padding: 3em;
     gap: 5em;
 }
 
@@ -40,4 +40,16 @@
     flex-direction: column;
     justify-content: flex-start;
     color: #567c8d;
+}
+
+#notification {
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    width: 20%;
+    position: fixed;
+    bottom: 2%;
+    left: 1%;
+    background-color: #567c8d;
+    border-radius: 15px;
 }

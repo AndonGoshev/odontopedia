@@ -37,6 +37,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     sign_up_method = models.CharField(max_length=20, choices=SignupMethodChoices, default=SignupMethodChoices.ODONTOPEDIA)
     premium_status = models.BooleanField(default=False)
 
+    created_at = models.DateTimeField(auto_now_add=True,)
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
@@ -48,9 +50,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
-    age = models.PositiveSmallIntegerField(blank=True, null=True)
-    university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices)
-    bio = models.CharField(max_length=500, blank=True, null=True)
+    age = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
+    university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices, default='')
+    bio = models.CharField(max_length=500, blank=True, null=True , default='Please add some information about you.')
 
 
     def __str__(self):

@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 2em;
     align-items: center;
     border-radius: 10px;
@@ -204,4 +205,26 @@
 .mini-field-icon img {
     width: 100%;
     height: 100%;
+}
+
+#settings-section ul {
+    list-style: none;
+}
+
+#settings-section ul li a {
+    font-size: 0.8em;
+    color: #2f4145;
+}
+
+#activity-section ul {
+    list-style: none;
+}
+
+#activity-section ul li  {
+    font-size: 0.8em;
+    color: #2f4145;
+}
+
+#activity-section ul li span {
+    color: #688e95;
 }

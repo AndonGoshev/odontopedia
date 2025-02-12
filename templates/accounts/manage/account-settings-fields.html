@@ -44,9 +44,34 @@
 
         </div>
 
+        <div id="activity-section">
 
-        <div>uoou</div>
-        <!-- Hidden controls for editing the profile image -->
+            <h3>Activity</h3>
+
+            <ul>
+
+                <li>Last login:<br> <span>{{ user.last_login }}</span></li>
+                <li>Signed up at: <br> <span>{{ user.created_at }}</span></li>
+
+            </ul>
+
+        </div>
+
+
+        <div id="settings-section">
+
+            <h3>Settings</h3>
+
+            <ul>
+
+                <li><a href="#">Membership</a></li>
+                <li><a href="#">Change password</a></li>
+                <li><a href="#">Delete account</a></li>
+
+            </ul>
+
+        </div>
+
     </div>
 
 
@@ -59,7 +84,7 @@
                 <label>First Name:</label>
                 <input type="text" id="first_name_input" class="profile-field-display" value="{{ user.first_name }}"
                        readonly>
-                
+
                 <div class="mini-field-icon"><img alt="mini icon" src="{% static 'images/profile-mini.png' %}"></div>
 
             </div>
