@@ -79,13 +79,9 @@ function saveField(field) {
     let input = document.getElementById(field + '_input');
     let newValue = input.value;
 
-    // Debug: Check character count before saving
-    console.log("Attempting to save field: " + field);
-    console.log("Character count before save: " + newValue.length);
-
     // If the character count exceeds 500, prevent saving
     if (newValue.length > 500) {
-        alert("Bio cannot exceed 500 characters.");
+        alert("The field cannot exceed 500 characters.");
         return;  // Stop execution here, don't submit the form
     }
 
@@ -161,8 +157,7 @@ function updateFieldCustom(field, newValue) {
                 // Use the dedicated function for profile image so that the image stays displayed
                 cancelProfileImageEdit();
             } else {
-                // document.getElementById(field + '_display').textContent = newValue;
-                cancelEdit(field);
+                document.getElementById(field + '_input').value = newValue;
             }
         } else if (data.error) {
             showNotification("Error: " + data.error);
@@ -178,4 +173,45 @@ function showNotification(message) {
     setTimeout(function () {
         notification.style.display = "none";
     }, 2000);
+}
+
+
+function saveProfileImage() {
+    let fileInput = document.getElementById("profile_image_input");
+
+    if (!fileInput.files.length) {
+        alert("Please select an image before saving.");
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append("field", "profile_image");
+    formData.append("profile_image", fileInput.files[0]);
+
+    console.log("Saving profile image...");
+
+    fetch(accountSettingsUrl, {
+        method: "POST",
+        headers: { "X-CSRFToken": csrfToken },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            showNotification(data.message);
+
+            // Update the profile image preview
+            if (data.value) {
+                document.getElementById("profile_image_display").src = data.value;
+            }
+
+            // Hide file input and buttons after saving
+            cancelProfileImageEdit();
+        } else if (data.error) {
+            showNotification("Error: " + data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Error saving profile image:", error);
+    });
 }

@@ -1,3 +1,4 @@
+{% load static %}
 <form id="profile-settings-form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -58,6 +59,8 @@
                 <label>First Name:</label>
                 <input type="text" id="first_name_input" class="profile-field-display" value="{{ user.first_name }}"
                        readonly>
+                
+                <div class="mini-field-icon"><img alt="mini icon" src="{% static 'images/profile-mini.png' %}"></div>
 
             </div>
 
@@ -77,6 +80,7 @@
                 <label>Last Name:</label>
                 <input type="text" id="last_name_input" class="profile-field-display" value="{{ user.last_name }}"
                        readonly>
+                <div class="mini-field-icon"><img alt="mini icon" src="{% static 'images/profile-mini.png' %}"></div>
             </div>
             <div class="field-buttons">
                 <p id="last_name_edit_btn" onclick="editField('last_name')">✎_ Edit</p>
@@ -98,6 +102,7 @@
                 <label>Age:</label>
                 <input type="number" id="age_input" class="profile-field-display" value="{{ user.profile.age }}"
                        readonly>
+                <div class="mini-field-icon"><img alt="mini icon" src="{% static 'images/calendar-mini.png' %}"></div>
             </div>
             <div class="field-buttons">
                 <p id="age_edit_btn" onclick="editField('age')">✎_ Edit</p>
@@ -114,6 +119,7 @@
                 <input type="text" id="university_input" class="profile-field-display"
                        value="{{ user.profile.university }}"
                        readonly>
+                <div class="mini-field-icon"><img alt="mini icon" src="{% static 'images/uni-mini.png' %}"></div>
             </div>
             <div class="field-buttons">
                 <p id="university_edit_btn" onclick="editField('university')">✎_ Edit</p>

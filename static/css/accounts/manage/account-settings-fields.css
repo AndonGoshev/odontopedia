@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 #profile_image_wrapper {
     width: 100%;
     display: flex;
@@ -5,10 +8,14 @@
     justify-content: space-between;
     margin-bottom: 2em;
     align-items: center;
-    border: 1px solid #567c8d;
     border-radius: 10px;
     padding: 1em 3em;
+
+    background-color: white;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #cccbcb;
 }
+
 
 #profile_image_display_container {
     /*width: 100%;*/
@@ -108,6 +115,7 @@
     color: white;
     padding: 0.1em 0.3em;
     border-radius: 5px;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .field-buttons p:hover {
@@ -145,24 +153,31 @@
 }
 
 .label-and-field input, .label-and-field textarea {
+    font-size: 0.9em;
     flex-grow: 1;
     height: 3em;
     border-radius: 5px;
-    border: 1px solid #2f4145;
-    padding-left: 0.5em;
-    font-size: 1em;
+    /*font-size: 1em;*/
     color: #2f4145;
+    background-color: white;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
+    padding-left: 0.5em;
+    border: 1px solid #e4e4e4;
 }
 
 
 #bio_container {
+    margin-top: 1em;
     width: 100%;
 }
 
 #bio_container .label-and-field textarea {
-    min-height: 8em;
-    max-height: 8em;
-    padding-top: 0.5em;
+    /*font-family: "Montserrat", serif;*/
+
+    color: #4c6a70;
+    min-height: 9em;
+    max-height: 9em;
+    padding: 0.5em;
 }
 
 #bio_container .field-buttons {
@@ -175,4 +190,18 @@
 
 #char_count {
     color: #774242;
+}
+
+
+.mini-field-icon {
+    position: absolute;
+    top: 30%;
+    right: 2%;
+    width: 1em;
+    height: 1em;
+}
+
+.mini-field-icon img {
+    width: 100%;
+    height: 100%;
 }
