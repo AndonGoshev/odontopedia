@@ -44,7 +44,6 @@ class RegistrationView(CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
 
         return super().form_invalid(form)
 
@@ -95,7 +94,6 @@ class AuthGoogle(APIView):
         except Exception as e:
             print(e)
 
-        # print(user.email)  # Example usage of the user
         print(f"Was the user created? {'Yes' if created else 'No'}")
 
         # Add any other logic, such as setting a http only auth cookie as needed here.

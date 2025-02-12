@@ -5,26 +5,20 @@ function updateCharCount() {
 
     let charCount = textarea.value.length;
 
-    // Debug: log current character count and the status of save button
-    console.log("Current Character Count: " + charCount);
-    console.log("Save Button Disabled: " + saveBtn.disabled);
 
     counter.textContent = charCount + " / 500";
 
     // Disable the save button if the character count exceeds 500
     if (charCount > 500) {
         saveBtn.disabled = true;
-        console.log("Save button disabled because char count exceeds 500.");
     } else {
         saveBtn.disabled = false;
-        console.log("Save button enabled.");
     }
 }
 
 // Initialize the counter when the page loads
 document.addEventListener("DOMContentLoaded", function () {
     // Debug: log when the page is fully loaded
-    console.log("Page loaded. Initializing character counter...");
     updateCharCount(); // Set counter based on existing bio text
 
     let bioInput = document.getElementById("bio_input");
@@ -50,8 +44,7 @@ function editField(field) {
     saveBtn.style.display = "inline";
     cancelBtn.style.display = "inline";
 
-    // Debug: log when entering edit mode
-    console.log("Entering edit mode for field: " + field);
+
     updateCharCount(); // Update count when entering edit mode
 }
 
@@ -134,12 +127,6 @@ function updateFieldCustom(field, newValue) {
         formData.append("value", newValue);
     }
 
-    // Debug: Log FormData contents
-    console.log("Updating field:", field);
-    for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-    }
-
     fetch(accountSettingsUrl, {
         method: "POST",
         headers: {
@@ -188,7 +175,6 @@ function saveProfileImage() {
     formData.append("field", "profile_image");
     formData.append("profile_image", fileInput.files[0]);
 
-    console.log("Saving profile image...");
 
     fetch(accountSettingsUrl, {
         method: "POST",
@@ -226,14 +212,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch university choices and user data from the backend
     fetch('/accounts/get-university-data/')
     .then(response => {
-        console.log("Response Status:", response.status);
-        console.log("Response Headers:", response.headers.get("content-type"));
+
         return response.json(); // Read response as JSON
     })
     .then(data => {
         let universityChoices = data.universities;
         let userUniversity = data.user_university;
-        console.log(universityChoices);
+
 
         // Populate dropdown options
         universityChoices.forEach(university => {

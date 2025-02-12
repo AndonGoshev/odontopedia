@@ -166,7 +166,7 @@
             <div class="label-and-field">
                 <label>Bio: (max 500 chars) <span id="char_count">0 / 500</span></label>
                 <textarea id="bio_input" class="profile-field-display" readonly
-                          oninput="updateCharCount()">{{ user.profile.bio }}</textarea>
+                          oninput="updateCharCount()" maxlength="500">{{ user.profile.bio }}</textarea>
                 <!-- Counter display -->
             </div>
             <div class="field-buttons">
