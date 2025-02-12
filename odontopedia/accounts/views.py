@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PIL import Image
 from decouple import config
 from django.contrib.auth import login, get_user
@@ -112,9 +114,12 @@ class UserProfileUpdateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user = request.user
         profile, created = Profile.objects.get_or_create(user=user)  # Ensure profile exists
+        date_of_birth = profile.date_of_birth.strftime('%Y-%m-%d') if profile.date_of_birth else 'None'
+
         return render(request, 'accounts/manage/account-settings.html', {
             'user': user,
             'profile': profile,
+            'date_of_birth': date_of_birth,  # Pass it explicitly
         })
 
     def post(self, request, *args, **kwargs):
@@ -125,6 +130,15 @@ class UserProfileUpdateView(LoginRequiredMixin, View):
         profile, created = Profile.objects.get_or_create(user=user)
 
         try:
+
+            if field == 'date_of_birth':
+                if not value:
+                    return JsonResponse({'error': 'Date of birth cannot be empty'}, status=400)
+                # Convert date string to datetime object
+                profile.date_of_birth = datetime.strptime(value, '%Y-%m-%d')
+                profile.save()
+                return JsonResponse({'message': 'Date of birth updated successfully',
+                                     'value': profile.date_of_birth.strftime('%Y-%m-%d')})
             # First, check if it's a profile image upload
             if field == 'profile_image' and 'profile_image' in request.FILES:
                 uploaded_image = request.FILES['profile_image']
@@ -148,7 +162,7 @@ class UserProfileUpdateView(LoginRequiredMixin, View):
                 user.save()
 
             # And handle profile fields for age and university
-            elif field in ['age', 'university', 'bio']:
+            elif field in ['date_of_birth', 'university', 'bio']:
                 if not value:
                     return JsonResponse({'error': f'{field} cannot be empty'}, status=400)
                 setattr(profile, field, value)
