@@ -1,25 +1,60 @@
+#authenticated-user-container {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+#user-fields h5 {
+    font-size: 0.8em;
+}
+
+#user-fields p {
+    font-size: 0.8em;
+}
+
 .profile-icon-container {
+    width: 2.5em;
+    height: 2.5em;
     position: relative;
     display: inline-block;
+    border-radius: 50%;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
 }
+
+#dropdown-tick {
+    color: gray;
+    position: absolute;
+    right: -40%;
+    top: 30%;
+    /*transform: translateY(-50%);*/
+}
+
 
 .profile-icon-container img {
-    width: 2.3em; /* Adjust as needed */
+    width: 100%;
+    height: 100%;
     cursor: pointer;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
-/* The dropdown menu - initially hidden */
+/* Dropdown Menu (Initially Hidden) */
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%;
-    right: -50%;
+    top: calc(100% + 5px); /* Ensures no gap */
+    right: 0;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-width: 150px;
     z-index: 1000;
+}
+
+/* Show dropdown when JS adds the "show" class */
+.dropdown-menu.show {
+    display: block;
 }
 
 .dropdown-menu ul {
@@ -43,12 +78,11 @@
     display: block;
 }
 
-/* Show the dropdown menu on hover */
-.profile-icon-container:hover .dropdown-menu {
+/* Remove hover effect (it was causing issues) */
+/* .profile-icon-container:hover .dropdown-menu {
     display: block;
-}
+} */
 
-/* Optional: Change the color of links on hover */
 .dropdown-menu ul li a:hover {
     background-color: #f1f1f1;
 }

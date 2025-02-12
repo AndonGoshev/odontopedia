@@ -1,23 +1,52 @@
 {% load static %}
 
-<div class="profile-icon-container">
-    <img src="{% static 'images/profile-icon.png' %}" alt="Profile Icon">
+<div id="authenticated-user-container">
 
-    <!-- Dropdown Menu -->
-    <div class="dropdown-menu">
-        
-        <ul>
-            
-            <li><a href="{% url 'account-settings' %}">Account</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
-            
-        </ul>
-        
+    <div id="user-fields">
+
+        <h5>{{ user.get_full_name }}</h5>
+        <p>{{ user.email }}</p>
+
     </div>
-    
+
+    <div class="profile-icon-container" id="profile-icon">
+        <img src="{{ user.profile_image.url }}" alt="Profile Icon">
+        
+{#        <p id="dropdown-tick">▽</p>#}
+
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="{% url 'account-settings' %}">Account</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+
 </div>
 
 <form id="logout-form" method="post" action="{% url 'logout' %}">
     {% csrf_token %}
 </form>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileIcon = document.getElementById("profile-icon");
+        const dropdownMenu = document.getElementById("dropdown-menu");
+
+        // Toggle dropdown when clicking the profile icon
+        profileIcon.addEventListener("click", function (event) {
+            dropdownMenu.classList.toggle("show");
+            event.stopPropagation(); // Prevents immediate closing
+        });
+
+        // Close dropdown when clicking outside of it
+        document.addEventListener("click", function (event) {
+            if (!profileIcon.contains(event.target)) {
+                dropdownMenu.classList.remove("show");
+            }
+        });
+    });
+</script>
