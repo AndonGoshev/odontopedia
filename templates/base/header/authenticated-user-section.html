@@ -4,7 +4,7 @@
 
     <div id="user-fields">
 
-        <h5>{{ user.get_full_name }}</h5>
+        <h5>{{ user.first_name|slice:10 }} {{ user.last_name|slice:10 }}</h5>
         <p>{{ user.email }}</p>
 
     </div>
@@ -17,6 +17,7 @@
         <!-- Dropdown Menu -->
         <div class="dropdown-menu" id="dropdown-menu">
             <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
                 <li><a href="{% url 'account-settings' %}">Account</a></li>
                 <li><a href="#">Settings</a></li>
                 <li><a href="#" onclick="document.getElementById('logout-form').submit();">Log out</a></li>

@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+
+
+    <div id="dashboard-wrapper">
+
+        <div id="sidebar-wrapper">
+
+            <div id="sidebar-container">
+
+                <div id="sidebar-header">
+
+                    <h3>Dashboard</h3>
+
+                </div>
+
+                <div id="sidebar-router">
+
+                    <ul>
+
+                        <li><a href="#" data-target="subjects-wrapper">Subjects</a></li>
+                        <li><a href="#" data-target="tuitions-wrapper">Tuitions</a></li>
+                        <li><a href="#" data-target="mentor-hub-wrapper">Mentor Hub</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="work-field-wrapper">
+
+            <div id="work-field-container">
+
+                {% include 'dashboard/subjects.html' %}
+
+                {% include 'dashboard/tuitions.html' %}
+
+                {% include 'dashboard/mentor-hub.html' %}
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll("#sidebar-router a");
+            const sections = document.querySelectorAll("#work-field-container > div");
+
+
+            function showSection(target) {
+                sections.forEach(section => {
+                    section.style.display = section.id === target ? "block" : "none";
+                });
+
+                links.forEach(link => {
+                    link.classList.toggle("active", link.getAttribute("data-target") === target);
+                });
+            }
+
+            links.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = this.getAttribute("data-target");
+                    showSection(target);
+                });
+            });
+
+            // Show the first section by default
+            showSection("subjects-wrapper");
+        });
+    </script>
+{% endblock %}

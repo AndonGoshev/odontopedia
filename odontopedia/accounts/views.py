@@ -181,7 +181,6 @@ class UserProfileUpdateView(LoginRequiredMixin, View):
 def get_university_data(request):
     # Directly use UniversityChoices' choices
     university_choices = [choice[0] for choice in UniversityChoices.choices]
-    print(university_choices)
 
     user = request.user
     user_university = user.profile.university
