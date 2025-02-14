@@ -1,12 +1,11 @@
 #dashboard-wrapper {
     width: 100%;
-    height: 100vh;
     background: #fff;
     display: flex;
 }
 
 #sidebar-wrapper {
-    margin-top: 0.5em;
+    margin-top: 1.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    width: 70%;
+    width: 90%;
 }
 
 #sidebar-container h3 {
@@ -28,6 +27,7 @@
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2);
     font-size: 1.5em;
     color: #5c5c5c;
+    background-color: #f5efeb;
 }
 
 #sidebar-wrapper ul {
@@ -40,28 +40,55 @@
 
 #sidebar-router li {
     list-style: none;
+    display: flex;
+    align-items: center;
+    /*align-items: center;*/
 }
 
 #sidebar-router a {
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     font-size: 1em;
-    padding: 0.2em 0.8em;
+    padding: 0.4em 1.3em;
     text-decoration: none;
-    color: #5c5c5c;
-    display: block;
-    transition: 0.3s;
+    color: #777777;
+    /*transition: 0.1s;*/
+}
+
+#sidebar-router svg {
+    width: 1em;
+    height: 1em;
+    margin-bottom: 4px;
 }
 
 #sidebar-router a.active {
-    background-color: #2d91d1;
-    color: white;
-    border-radius: 5px;
+    background-color: #2468b1;
+    color: #fff;
+    border-radius: 15px;
 }
 
 
+#sidebar-router li a.active svg {
+    filter: brightness(0) invert(1); /* Turns black icons white */
+}
+
 #work-field-wrapper {
-    flex: 1 0 auto;
-    height: 100%;
+    display: flex;
+    min-height: 80vh;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    flex: 1 0 85%;
     background-color: #f5efeb;
     border-top-left-radius: 50px;
     margin-top: 1em;
 }
+
+#work-field-container {
+    margin: 2.5em 2.5em 2.5em 3em;
+    width: 100%;
+    /*border: 1px solid green;*/
+}
+

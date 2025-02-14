@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block title %}
     Dashboard
@@ -13,19 +14,19 @@
 
             <div id="sidebar-container">
 
-                <div id="sidebar-header">
-
-                    <h3>Dashboard</h3>
-
-                </div>
+{#                <div id="sidebar-header">#}
+{##}
+{#                    <h3>Dashboard</h3>#}
+{##}
+{#                </div>#}
 
                 <div id="sidebar-router">
 
                     <ul>
 
-                        <li><a href="#" data-target="subjects-wrapper">Subjects</a></li>
-                        <li><a href="#" data-target="tuitions-wrapper">Tuitions</a></li>
-                        <li><a href="#" data-target="mentor-hub-wrapper">Mentor Hub</a></li>
+                        <li><a href="#" data-target="subjects-wrapper">{% include 'svg/subjects-icon.html' %} Subjects</a></li>
+                        <li><a href="#" data-target="tuitions-wrapper">{% include 'svg/calendar.html' %} Tuitions</a></li>
+                        <li><a href="#" data-target="mentor-hub-wrapper">{% include 'svg/messages.html' %}      Mentor Hub</a></li>
 
                     </ul>
 

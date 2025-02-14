@@ -1,0 +1,133 @@
+#subjects-wrapper {
+    width: 100%;
+}
+
+#subjects-header-container {
+    border-bottom: 2px solid gray;
+    padding-bottom: 0.8em;
+}
+
+#subjects-title-container {
+    letter-spacing: 0.05em;
+    color: #2f4156;
+}
+
+#subjects-title-container p {
+    font-size: 0.9em;
+    color: #567c8d;
+}
+
+
+/*.*/
+/*.*/
+/*.*/
+/*.*/
+
+
+#subjects-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#subjects-inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    column-gap: 4em;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+.subject-container {
+    position: relative;
+    background-color: #fbfbfb;
+    width: 15em;
+    height: 10em;
+    border-radius: 25px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    /*border: 1px solid #2f4145;*/
+}
+
+.subject-text-container {
+    color: #515151;
+    margin-top: 2.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+    max-height: 3em;
+    margin-bottom: 1em;
+}
+
+.subject-text-container h5 {
+    margin-bottom: 0;
+}
+
+.subject-text-container p {
+    font-weight: 300;
+}
+
+.subject-container a {
+    position: absolute;
+    right: 2%;
+    bottom: 4%;
+    padding: 0.2em 0.4em;
+    text-decoration: none;
+    background-color: #567c8d;
+    color: white;
+    border-radius: 15px;
+}
+
+.subject-container a:hover {
+    background-color: #70a1b8;
+}
+
+.dashboard-subject-icon-container {
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    top: -15%;
+    left: 10%;
+    background-color: #567c8d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
+
+.dashboard-subject-icon-container img {
+    width: 65%;
+    height: 65%;
+}
+
+#operative-home-icon {
+    background-color: #EA5A8E;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
+
+#prosthodontics-home-icon {
+    background-color: #15C2A2;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
+
+#oral-home-icon {
+    background-color: #4E99F4;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
+
+#paediatric-home-icon {
+    background-color: #F98833;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
+
+#orthodontics {
+    background-color: #D48BE5;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
+
+#periodontology {
+    background-color: #7CBCE8;
+    box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
+}
