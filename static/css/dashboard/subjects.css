@@ -34,60 +34,84 @@
 #subjects-inner-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2em;
-    column-gap: 4em;
+    gap: 4em;
     align-items: center;
     justify-content: center;
     margin-top: 4em;
 }
 
-.subject-container {
+.dashboard-subject-container {
+    display: flex;
+    flex-direction: column;
     position: relative;
     background-color: #fbfbfb;
+    flex: 0 0 28%;
     width: 15em;
-    height: 10em;
+    height: 15em;
     border-radius: 25px;
     box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
     /*border: 1px solid #2f4145;*/
 }
 
-.subject-text-container {
+.dashboard-subject-text-container {
     color: #515151;
-    margin-top: 2.5em;
+    margin-top: 2em;
     margin-left: 1em;
     margin-right: 1em;
     max-height: 3em;
-    margin-bottom: 1em;
 }
 
-.subject-text-container h5 {
+.dashboard-subject-text-container h5 {
     margin-bottom: 0;
 }
 
-.subject-text-container p {
-    font-weight: 300;
+.dashboard-subject-years-container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.subject-container a {
-    position: absolute;
-    right: 2%;
-    bottom: 4%;
-    padding: 0.2em 0.4em;
-    text-decoration: none;
-    background-color: #567c8d;
-    color: white;
-    border-radius: 15px;
+.years-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 90%;
+    padding-bottom: 0.5em;
 }
 
-.subject-container a:hover {
-    background-color: #70a1b8;
+.year-item {
+    width: 100%;
+    border: 1px solid #b3aeae;
+    border-radius: 10px;
+    padding: 0.1em 1em;
+    color: #515151;
+    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.year-item:hover {
+    cursor: pointer;
+    background-color: #c8d9e6;
+}
+
+.year-item .subject-year-progress {
+    font-size: 0.7em;
+}
+.exam-check {
+    font-size: 0.6em;
+    color: #E14D2A;
 }
 
 .dashboard-subject-icon-container {
     position: absolute;
     width: 3em;
     height: 3em;
-    top: -15%;
+    top: -12%;
     left: 10%;
     background-color: #567c8d;
     border-radius: 50%;
@@ -102,7 +126,7 @@
     height: 65%;
 }
 
-#operative-home-icon {
+#operative-dashboard-icon {
     background-color: #EA5A8E;
     box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
 }
@@ -112,22 +136,22 @@
     box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
 }
 
-#oral-home-icon {
+#oral-dashboard-icon {
     background-color: #4E99F4;
     box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
 }
 
-#paediatric-home-icon {
+#paediatric-dashboard-icon {
     background-color: #F98833;
     box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
 }
 
-#orthodontics {
+#orthodontics-dashboard-icon {
     background-color: #D48BE5;
     box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
 }
 
-#periodontology {
+#periodontology-dashboard-icon {
     background-color: #7CBCE8;
     box-shadow: 0 5px 10px rgba(86, 124, 141, 0.5);
 }

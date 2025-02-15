@@ -56,6 +56,7 @@
     text-decoration: none;
     color: #777777;
     /*transition: 0.1s;*/
+
 }
 
 #sidebar-router svg {
@@ -68,6 +69,7 @@
     background-color: #2468b1;
     color: #fff;
     border-radius: 15px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -84,6 +86,7 @@
     background-color: #f5efeb;
     border-top-left-radius: 50px;
     margin-top: 1em;
+        box-shadow: 3px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 #work-field-container {
