@@ -1,0 +1,55 @@
+#tuitions-wrapper {
+    width: 100%;
+}
+
+#tuitions-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid gray;
+    padding-bottom: 0.8em;
+}
+
+#tuitions-title-container {
+    letter-spacing: 0.05em;
+    color: #2f4156;
+}
+
+#tuitions-title-container p {
+    font-size: 0.9em;
+    color: #567c8d;
+}
+
+#tuitions-left-container {
+    letter-spacing: 0.05em;
+    color: #2f4156;
+}
+
+#tuitions-left-container p {
+    /*font-size: 0.9em;*/
+    /*color: #567c8d;*/
+}
+
+#tuitions-left-number {
+    font-size: 1em;
+    color: white;
+    background-color: #3E6D9C;
+    padding: 0.5em;
+    margin-left: 0.5em;
+    border-radius: 5px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/*.*/
+/*.*/
+/*.*/
+/*.*/
+
+
+#tuitions-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+}

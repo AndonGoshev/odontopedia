@@ -153,3 +153,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+
+GOOGLE_CALENDAR_CREDENTIALS_PATH = os.path.join(BASE_DIR, "google_calendar_credentials.json")

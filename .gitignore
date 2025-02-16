@@ -34,3 +34,5 @@ media/
 # macOS & Windows system files
 .DS_Store
 Thumbs.db
+
+google_calendar_credentials.json
