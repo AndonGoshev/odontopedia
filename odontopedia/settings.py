@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     #custom apps
     'odontopedia.accounts.apps.AccountsConfig',
     'odontopedia.common.apps.CommonConfig',
-    'odontopedia.dashboard.apps.DashboardConfig'
+    'odontopedia.dashboard.apps.DashboardConfig',
+    'odontopedia.bookings.apps.BookingsConfig'
 ]
 
 MIDDLEWARE = [
