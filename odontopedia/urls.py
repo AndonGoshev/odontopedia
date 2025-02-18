@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('odontopedia.common.urls')),
     path('accounts/', include('odontopedia.accounts.urls')),
     path('dashboard/', include('odontopedia.dashboard.urls')),
+    path('bookings/', include('odontopedia.bookings.urls')),
 ]
 
 if settings.DEBUG:
