@@ -3,7 +3,7 @@ from django.db import models
 from odontopedia.accounts.models import CustomUser
 
 
-class AvailableSlots(models.Model):
+class AvailableSlot(models.Model):
     date = models.DateField()
     time = models.TimeField()
     is_booked = models.BooleanField(default=False)
@@ -14,7 +14,7 @@ class AvailableSlots(models.Model):
 
 class Booking(models.Model):
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    slot = models.ForeignKey(AvailableSlots, on_delete=models.CASCADE)
+    slot = models.ForeignKey(AvailableSlot, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
