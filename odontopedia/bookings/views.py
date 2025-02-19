@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
@@ -33,6 +34,10 @@ class BookSlotJSONView(View):
         try:
             data = json.loads(request.body)
             slot_id = data.get('slot_id')
+            booking_date = data.get('date')
+            booking_time = data.get('time')
+            focus_area = data.get('focus_area')
+            description = data.get('description')
             if not slot_id:
                 return JsonResponse({'error': 'Slot ID is required'}, status=400)
 
@@ -44,13 +49,15 @@ class BookSlotJSONView(View):
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
 
-        booking = Booking.objects.create(student=request.user, slot=slot)
+        booking = Booking.objects.create(student=request.user, slot=slot, date=booking_date, time=booking_time, focus_area=focus_area, description=description)
 
         slot.is_booked = True
         slot.save()
+        self.request.user.number_of_tuitions -= 1
+        self.request.user.save()
 
         meeting_room = MeetingRoom.objects.first()
-        room_link = meeting_room.room_link
+        room_link = meeting_room.room_link if meeting_room else 'no meeting room model'
 
         return JsonResponse({
             'message': 'Booking successful',
@@ -61,8 +68,6 @@ class BookSlotJSONView(View):
                 'room_link': room_link,
             }
         })
-
-
 
 
 

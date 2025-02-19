@@ -47,6 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     sign_up_method = models.CharField(max_length=20, choices=SignupMethodChoices, default=SignupMethodChoices.ODONTOPEDIA)
     premium_status = models.BooleanField(default=False)
+    number_of_tuitions = models.IntegerField(default=1)
 
     created_at = models.DateTimeField(auto_now_add=True,)
 
@@ -70,6 +71,7 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     university = models.CharField(max_length=255, blank=True, null=True, choices=UniversityChoices, default=UniversityChoices.INITIAL)
     bio = models.CharField(max_length=500, blank=True, null=True , default='Please add some information about you.')
+
 
 
     def __str__(self):
