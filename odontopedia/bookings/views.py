@@ -63,6 +63,19 @@ class BookSlotJSONView(View):
         meeting_room = MeetingRoom.objects.first()
         room_link = meeting_room.room_link if meeting_room else 'no meeting room model'
 
+        send_mail(
+            subject='Successfully Booked Tuition Session',
+            message='',  # Leave this empty if you're using HTML content
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[self.request.user.email],
+            html_message=render_to_string('emails/tuition-booked-email.html', {
+                'user': self.request.user,
+                'date': slot.date,
+                'time': slot.time
+            }),
+            fail_silently=False,
+        )
+
         return JsonResponse({
             'message': 'Booking successful',
             'booking': {
