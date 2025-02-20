@@ -1,13 +1,17 @@
 import json
+from http.client import error
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
+from odontopedia import settings
 from odontopedia.bookings.models import Slot, Booking, MeetingRoom
 
 
@@ -69,6 +73,47 @@ class BookSlotJSONView(View):
             }
         })
 
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CancelBookingView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            booking_id = data.get('booking_id')
+
+            booking = Booking.objects.get(id=booking_id, )
+            slot = booking.slot
+            slot.is_booked = False
+            slot.save()
+            booking.delete()
+
+            self.request.user.number_of_tuitions += 1
+            self.request.user.save()
+
+            send_mail(
+                subject='Tuition Session Cancelled',
+                message='',  # Leave this empty if you're using HTML content
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[self.request.user.email],
+                html_message=render_to_string('emails/tuition-cancel-email.html', {
+                    'user': self.request.user,
+                    'date': slot.date,
+                    'time': slot.time
+                }),
+                fail_silently=False,
+            )
+
+            return JsonResponse({
+                'success': True,
+                'message': 'Tuition Session Cancelled Successfully'
+            })
+
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            }, status=400)
 
 
 
