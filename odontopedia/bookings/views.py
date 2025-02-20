@@ -8,12 +8,12 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
-from odontopedia.bookings.models import AvailableSlot, Booking, MeetingRoom
+from odontopedia.bookings.models import Slot, Booking, MeetingRoom
 
 
 class AvailableSlotsJSONView(View):
     def get(self, request):
-        slots = AvailableSlot.objects.filter(is_booked=False,).order_by('date', 'time')
+        slots = Slot.objects.filter(is_booked=False, ).order_by('date', 'time')
 
         slots_list = []
         for slot in slots:
@@ -41,9 +41,9 @@ class BookSlotJSONView(View):
             if not slot_id:
                 return JsonResponse({'error': 'Slot ID is required'}, status=400)
 
-            slot = AvailableSlot.objects.get(id=slot_id, is_booked=False)
+            slot = Slot.objects.get(id=slot_id, is_booked=False)
 
-        except AvailableSlot.DoesNotExist:
+        except Slot.DoesNotExist:
             return JsonResponse({'error': 'Slot not available'}, status=400)
 
         except json.JSONDecodeError:

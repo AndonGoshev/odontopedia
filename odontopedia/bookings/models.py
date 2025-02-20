@@ -5,7 +5,7 @@ from django.utils import timezone
 from odontopedia.accounts.models import CustomUser
 
 
-class AvailableSlot(models.Model):
+class Slot(models.Model):
     date = models.DateField()
     time = models.TimeField()
     is_booked = models.BooleanField(default=False)
@@ -16,7 +16,7 @@ class AvailableSlot(models.Model):
 
 class Booking(models.Model):
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='bookings')
-    slot = models.ForeignKey(AvailableSlot, on_delete=models.PROTECT)
+    slot = models.ForeignKey(Slot, on_delete=models.PROTECT)
     date = models.DateField(default=timezone.now, )
     time = models.TimeField(default=timezone.now, )
     created_at = models.DateTimeField(auto_now_add=True)
