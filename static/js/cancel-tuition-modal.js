@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cancelButtons.forEach(button => {
         button.addEventListener("click", function () {
             selectedBookingId = this.getAttribute("data-booking-id");
-            modal.style.display = "block"; // Show modal
+            modal.style.display = "flex"; // Show modal
         });
     });
 

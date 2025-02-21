@@ -5,7 +5,7 @@
     <div id="tuitions-header-container">
 
         <div id="tuitions-title-container">
-            <h3>Tuitions</h3>
+            <h2>Tuitions</h2>
             <p>Some example text goes here!</p>
         </div>
 
@@ -22,96 +22,179 @@
 
         <div id="booked-tuitions-container">
 
-            <h3>Upcoming tuitions</h3>
+            <div id="booked-tuitions-title-container">
 
+                <h2>Upcoming tuitions</h2>
+                <span class="cancel-tuition-text">Sessions can be canceled at least 24 hours in advance.</span>
 
-            {% for upcoming_tuition in upcoming_tuitions %}
-                <div class="upcoming-tuition-container">
-                    <p>{{ upcoming_tuition.date }}</p>
-                    <p>{{ upcoming_tuition.time }}</p>
-                    <p>{{ upcoming_tuition.focus_area }}</p>
-                    <p>{{ upcoming_tuition.description }}</p>
-                    <a href="{{ meeting_room }}" target="_blank">Tuition room</a>
-
-                    <div class="cancel-tuition-container">
-                        <button class="cancel-tuition-button"
-                                data-booking-id="{{ upcoming_tuition.id }}"
-                                data-date="{{ upcoming_tuition.date|date:'Y-m-d' }}"
-                                data-time="{{ upcoming_tuition.time|time:'H:i:s' }}">
-                            Cancel
-                        </button>
-                        <span class="cancel-tuition-text">Sessions can be canceled at least 24 hours in advance.</span>
-                    </div>
-                </div>
-            {% endfor %}
-
-            <div id="tuition-cancel-modal" class="tuition-modal-overlay" style="display: none;">
-                <div class="tuition-modal-container">
-                    <p>Are you sure that you want to cancel this tuition session? If so, your tuition credit will be
-                        restored.</p>
-                    <button id="tuition-confirm-cancel" class="tuition-confirm-button">Yes, Cancel</button>
-                    <button id="tuition-close-modal" class="tuition-close-button">No</button>
-                </div>
             </div>
 
+            {% if upcoming_tuitions %}
+                {% for upcoming_tuition in upcoming_tuitions %}
+
+                    <div class="upcoming-tuition-container">
+
+                        <div class="upcoming-tuition-left-container">
+
+                            <p>
+                                <span>Session Scheduled for: </span> {{ upcoming_tuition.date }} {{ upcoming_tuition.time }}
+                            </p>
+                            <p><span>Focus area:</span> {{ upcoming_tuition.focus_area }}</p>
+                            {% if upcoming_tuition.description %}
+                                <p><span>Additional notes: </span>{{ upcoming_tuition.description }}</p>
+                            {% endif %}
+                            <p><span>Tuition room: </span><a href="{{ meeting_room }}" target="_blank">Enter</a></p>
+
+                        </div>
+
+                        <div class="cancel-tuition-container">
+
+                            <button class="cancel-tuition-button"
+                                    data-booking-id="{{ upcoming_tuition.id }}"
+                                    data-date="{{ upcoming_tuition.date|date:'Y-m-d' }}"
+                                    data-time="{{ upcoming_tuition.time|time:'H:i:s' }}">
+                                Cancel Session
+                            </button>
+
+                            {#                        <span class="cancel-tuition-text">Sessions can be canceled <br>at least 24 hours in advance.</span>#}
+
+                        </div>
+
+                    </div>
+
+
+
+                {% endfor %}
+
+                <div id="tuition-cancel-modal" class="tuition-modal-overlay" style="display: none;">
+
+                    <div class="tuition-modal-container">
+
+                        <p>Are you sure that you want to cancel this tuition session? If so, your tuition credit will be
+                            restored.</p>
+
+                        <button id="tuition-confirm-cancel" class="tuition-confirm-button">Yes, Cancel</button>
+                        <button id="tuition-close-modal" class="tuition-close-button">No</button>
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <p>You don't have upcoming tuitions at this moment.</p>
+
+            {% endif %}
 
         </div>
 
         <div id="previous-tuitions-container">
 
-            <h3>Completed tuitions</h3>
+            <h2>Completed tuitions</h2>
 
-            {% for completed_tuition in completed_tuitions %}
-                <p>{{ completed_tuition.focus_area }}</p>
-                <p>{{ completed_tuition.description }}</p>
-                <p>{{ completed_tuition.date }}</p>
-                {% if completed_tuition.video_link %}
-                    <a href="{{ completed_tuition.video_link }}" target="_blank">video link</a>
-                {% else %}
-                    <a>The video link will be provided in two days after the session</a>
-                {% endif %}
-            {% endfor %}
+            {% if completed_tuitions %}
+
+                {% for completed_tuition in completed_tuitions %}
+
+                    <div class="completed-tuition-container">
+
+                        {#                    <p>{{ completed_tuition.focus_area }}</p>#}
+                        {#                    <p>{{ completed_tuition.description }}</p>#}
+                        {#                    <p>{{ completed_tuition.date }}</p>#}
+
+                        <p><span>Session from: </span> {{ completed_tuition.date }} {{ upcoming_tuition.time }}</p>
+                        <p><span>Focus area:</span> {{ completed_tuition.focus_area }}</p>
+                        {% if completed_tuition.description %}
+                            <p><span>Additional notes: </span>{{ completed_tuition.description }}</p>
+                        {% endif %}
+
+                        {% if completed_tuition.video_link %}
+
+                            <p><span>Recorded session: </span><a href="{{ completed_tuition.video_link }}">Video
+                                link</a>
+                            </p>
+
+                        {% else %}
+
+                            <p><span>Recorded session: </span>The video link will be provided in two days after the
+                                session
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>You don't have completed tuitions at this moment.</p>
+
+            {% endif %}
+
 
         </div>
 
         <div id="book-tuition-container">
 
-            {% if user.number_of_tuitions %}
-                <h4>Book a Tuition Slot</h4>
+            <h2>Book a Tuition Slot</h2>
 
-                <form id="book-slot-form">
-                    <label for="date-select">Select a Date:</label>
-                    <select id="date-select" required>
-                        <option value="" disabled selected>Choose a date</option>
-                    </select>
+            <div id="book-tuition-inner-container">
 
-                    <label for="time-select">Select a Time:</label>
-                    <select id="time-select" required disabled>
-                        <option value="" disabled selected>Choose a time</option>
-                    </select>
+                <div id="book-tuition-left-inner-container">
 
-                    <label for="focus-area-select">Focus Area:</label>
-                    <select id="focus-area-select" required>
-                        <option value="" disabled selected>Choose a focus area</option>
-                        {% for focus_area in tuition_focus_area_options.all %}
-                            <option>{{ focus_area.name }}</option>
-                        {% endfor %}
-                    </select>
+                    {% if user.number_of_tuitions %}
+
+                        <form id="book-slot-form">
+
+                            <select id="date-select" required>
+
+                                <option value="" disabled selected>Choose a date</option>
+
+                            </select>
 
 
-                    <label for="description-input">description of the tuition</label>
-                    <textarea id="description-input" name="description-input" maxlength="300" rows="4"
-                              placeholder="Write the year and the description you want to discuss or something else that you need to be clarified..."></textarea>
+                            <select id="time-select" required>
 
-                    <button type="submit" disabled>Book Slot</button>
-                    <div id="booking-response"></div>
-                </form>
+                                <option value="" disabled selected>Choose a time</option>
 
-            {% else %}
+                            </select>
 
-                <p>no tuitions left add more here <a href="#">Add tuitions</a></p>
 
-            {% endif %}
+                            <select id="focus-area-select" required>
+
+                                <option value="" disabled selected>Choose a focus area</option>
+
+                                {% for focus_area in tuition_focus_area_options.all %}
+
+                                    <option>{{ focus_area.name }}</option>
+
+                                {% endfor %}
+
+                            </select>
+
+
+                            <textarea required id="description-input" name="description-input" maxlength="300" rows="4"
+                                      placeholder="Please write the year you are in ,the subject and the topic you want to discuss."></textarea>
+
+                            <button type="submit" disabled>Book Slot</button>
+
+                            {#                TODO: booking response to be like confirm message on the account page #}
+                            <div id="booking-response"></div>
+
+                        </form>
+
+                    {% else %}
+
+                        <p>No tuition credits left. Add more <a href="#">Add tuitions</a></p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div id="book-tuition-right-inner-container"></div>
 
         </div>
 
@@ -121,163 +204,6 @@
 
 <script src="{% static 'js/cancel-tuition-button.js' %}"></script>
 <script src="{% static 'js/cancel-tuition-modal.js' %}"></script>
-<script src="{% static 'js/cancel-tuition-functionality.js' %}"></script>
-
-<script>
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("book-slot-form");
-        const dateSelect = document.getElementById("date-select");
-        const timeSelect = document.getElementById("time-select");
-        const focusAreaSelect = document.getElementById('focus-area-select')
-        const descriptionInput = document.getElementById("description-input"); // New input field for description
-        const submitButton = form.querySelector("button");
-        const responseDiv = document.getElementById("booking-response");
-
-        // Generate next 30 days dynamically for the date dropdown
-        function populateDateDropdown() {
-            const today = new Date();
-            for (let i = 2; i < 30; i++) {
-                let futureDate = new Date();
-                futureDate.setDate(today.getDate() + i);
-                let dateString = futureDate.toISOString().split("T")[0]; // Format YYYY-MM-DD
-
-                let option = document.createElement("option");
-                option.value = dateString;
-                option.textContent = futureDate.toDateString();
-                dateSelect.appendChild(option);
-            }
-        }
-
-        // Helper function to clear a select element and add a default option
-        function clearSelect(selectElement, defaultText) {
-            while (selectElement.firstChild) {
-                selectElement.removeChild(selectElement.firstChild);
-            }
-            let defaultOption = document.createElement("option");
-            defaultOption.value = "";
-            defaultOption.disabled = true;
-            defaultOption.selected = true;
-            defaultOption.textContent = defaultText;
-            selectElement.appendChild(defaultOption);
-        }
-
-        // Fetch available slots when a date is selected
-        dateSelect.addEventListener("change", function () {
-            const selectedDate = this.value;
-            if (!selectedDate) return;
-
-            // Clear time dropdown and show "Loading..." without innerHTML
-            clearSelect(timeSelect, "Loading...");
-            timeSelect.disabled = true;
-            submitButton.disabled = true;
-
-            fetch(`/bookings/available-slots/?date=${selectedDate}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Clear and set default "Choose a time" option
-                    clearSelect(timeSelect, "Choose a time");
-
-                    // Filter slots to only include those that match the selected date
-                    const slotsForDate = data.available_slots.filter(slot => slot.date === selectedDate);
-                    if (slotsForDate.length === 0) {
-                        clearSelect(timeSelect, "No available slots");
-                    } else {
-                        slotsForDate.forEach(slot => {
-                            let option = document.createElement("option");
-                            option.value = slot.id; // Use slot ID for booking reference
-                            option.textContent = slot.time; // Show time
-                            timeSelect.appendChild(option);
-                        });
-                        timeSelect.disabled = false;
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching time slots:", error);
-                });
-        });
-
-        // Enable submit button when a time is selected
-        timeSelect.addEventListener("change", function () {
-            submitButton.disabled = !this.value;
-        });
-
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const selectedSlotId = timeSelect.value;
-            const descriptionValue = descriptionInput.value.trim();
-            const selectedFocusArea = focusAreaSelect.value; // Get focus area value
-
-            // Validate description if necessary
-            if (!descriptionValue) {
-                responseDiv.textContent = "Please enter a description.";
-                responseDiv.style.color = "red";
-                return console.error('Description field cannot be empty.');
-            }
-
-            // You might also validate the focus area if needed:
-            if (!selectedFocusArea) {
-                responseDiv.textContent = "Please choose a focus area.";
-                responseDiv.style.color = "red";
-                return console.error('Focus area field cannot be empty.');
-            }
-
-            // Send slot ID, description, and focus area to the backend
-            const payload = {
-                slot_id: selectedSlotId,
-                description: descriptionValue,
-                focus_area: selectedFocusArea,
-                date: dateSelect.value,
-                time: timeSelect.options[timeSelect.selectedIndex].text,
-            };
-
-            fetch("/bookings/book-slot/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": getCookie("csrftoken")
-                },
-                body: JSON.stringify(payload)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message === "Booking successful") {
-                        responseDiv.textContent = "Booking confirmed!";
-                        responseDiv.style.color = "green";
-                    } else {
-                        responseDiv.textContent = "Booking failed: " + (data.error || "Unknown error");
-                        responseDiv.style.color = "red";
-                    }
-                })
-                .catch(error => {
-                    console.error("Fetch error:", error);
-                    responseDiv.textContent = "Booking failed: Network error";
-                    responseDiv.style.color = "red";
-                });
-        });
-
-        // Helper function to get CSRF token
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== "") {
-                let cookies = document.cookie.split(";");
-                for (let i = 0; i < cookies.length; i++) {
-                    let cookie = cookies[i].trim();
-                    if (cookie.startsWith(name + "=")) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-
-        // Initialize the date dropdown
-        populateDateDropdown();
-    });
-
-
-</script>
+<script src="{% static 'js/book-a-tuition.js' %}"></script>
 
 

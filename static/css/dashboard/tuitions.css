@@ -48,21 +48,234 @@
 
 
 #tuitions-container {
+    color: #4c4c4c;
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    gap: 3em;
+    margin: 3em 0 1em 0.5em;
 }
 
-#previous-tuitions-container {
-    border: 2px solid green;
+#booked-tuitions-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
+
+#tuitions-container h2 {
+    color: #2468b1;
+}
+
+.cancel-tuition-text {
+    font-size: 0.8em;
+    text-align: end;
+    /*color: #E14D2A;*/
+}
+
 
 #booked-tuitions-container {
-    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .upcoming-tuition-container {
-    margin: 2em 0;
+    width: 100%;
+    padding: 1.5em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.upcoming-tuition-left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    max-width: 70%;
+}
+
+.upcoming-tuition-left-container p:first-child {
+    font-weight: 600;
+    color: #2468b1;
+    /*color: #E14D2A;*/
+}
+
+.upcoming-tuition-left-container p span {
+    font-weight: 600;
+}
+
+.cancel-tuition-container {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5em;
+}
+
+.cancel-tuition-container button {
+    font-size: 0.6em;
+    color: white;
+    border: 0;
+    padding: 0.6em 0.6em;
+    background-color: #E14D2A;
+    border-radius: 5px;
+}
+
+.cancel-tuition-container button:disabled {
+    font-size: 0.6em;
+    color: white;
+    border: 0;
+    padding: 0.6em 0.6em;
+    background-color: #dfb7af;
+    border-radius: 5px;
+}
+
+.cancel-tuition-container button:disabled:hover {
+    cursor: auto;
+    background-color: #dfb7af;
+}
+
+.cancel-tuition-container button:hover {
+    cursor: pointer;
+    background-color: #c83b1a;
+}
+
+#tuition-cancel-modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tuition-modal-container {
+    width: 50%;
+    padding: 2em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.tuition-modal-container button {
+    display: block;
+    width: 75%;
+    border-radius: 15px;
+    padding: 1em 0;
+}
+
+
+
+
+
+
+#previous-tuitions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#previous-tuitions-container h2 {
+    /*color: #5B913B;*/
+        color: #2468b1;
+}
+
+.completed-tuition-container {
+    width: 100%;
+    padding: 1.5em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.completed-tuition-container p:first-child {
+    font-weight: 600;
+    color: #5B913B;
+    /*color: #E14D2A;*/
+}
+
+.completed-tuition-container p span {
+    font-weight: 600;
+}
+
+
+#book-tuition-container {
+    width: 100%;
+    padding: 1.5em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#book-slot-form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#book-slot-form select {
+    padding-left: 0.5em;
+    font-size: 0.8em;
+    height: 3em;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cccbcb;
+}
+
+#book-slot-form textarea {
+    padding: 0.5em;
+    font-size: 0.8em;
+    height: 5em;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cccbcb;
+}
+
+#book-slot-form button {
+    height: 3em;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cccbcb;
+    border-radius: 10px;
+    background-color: #2468b1;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+#book-slot-form button:hover {
+    cursor: pointer;
+    background-color: #1e548c;
+}
+
+#book-slot-form button:disabled {
+    background-color: #dcdcdc;
+    cursor: auto;
+}
+
+/*#booking-response {*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 0.5em;*/
+/*    width: 20%;*/
+/*    position: fixed;*/
+/*    bottom: 2%;*/
+/*    left: 1%;*/
+/*    background-color: #5B913B;*/
+/*    border-radius: 15px;*/
+/*}*/
